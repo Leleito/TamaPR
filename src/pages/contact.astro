@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Contact" description="Get in touch with Tama PR. Let's begin with a conversation.">
 
   <section class="pt-32 pb-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Contact</p>
       <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[600px] reveal">
         Let's begin with a conversation.
@@ -14,14 +14,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="py-20 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16">
 
         <!-- Contact Form -->
         <div class="reveal">
-          <h2 class="font-serif text-[24px] text-navy mb-2">Send a Message</h2>
-          <p class="text-[14px] text-text-muted mb-8">
-            Whether you're ready to explore a partnership, have a question about my work, or simply want to introduce yourself — reach out.
+          <h2 class="font-serif text-[24px] text-navy mb-2">I'd Love to Hear From You</h2>
+          <p class="text-[14px] text-text-muted mb-2">
+            Whether you're ready to explore a partnership, have a question about my work, or simply want to introduce yourself&mdash;reach out. I respond personally within 24 hours.
+          </p>
+          <p class="text-[14px] text-text-muted mb-8 italic">
+            No pressure. No pitch. Just listening.
           </p>
 
           <form id="contact-form" class="space-y-5">
@@ -63,15 +66,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Direct Contact -->
             <div>
               <h3 class="font-serif text-[20px] text-navy mb-4">Reach Me Directly</h3>
-              <div class="space-y-3">
+              <div class="space-y-4">
                 <a href="mailto:hello@tamapr.com" class="flex items-center gap-3 text-[14px] text-text-muted no-underline hover:text-terracotta transition-colors">
                   <span class="text-terracotta">&#9993;</span> hello@tamapr.com
                 </a>
-                <a href="https://www.linkedin.com/in/tama-munira-44348214b" target="_blank" rel="noopener" class="flex items-center gap-3 text-[14px] text-text-muted no-underline hover:text-terracotta transition-colors">
-                  <span class="text-terracotta">&#9679;</span> LinkedIn
+              </div>
+            </div>
+
+            <!-- Find Me Elsewhere -->
+            <div>
+              <h3 class="font-serif text-[20px] text-navy mb-4">Find Me Elsewhere</h3>
+              <div class="space-y-3">
+                <a href="https://www.linkedin.com/in/tama-munira-44348214b" target="_blank" rel="noopener" class="flex items-start gap-3 text-[14px] text-text-muted no-underline hover:text-terracotta transition-colors">
+                  <span class="text-terracotta mt-0.5">&#9679;</span>
+                  <span><strong class="text-navy">LinkedIn</strong> &mdash; Daily thoughts on PR, storytelling, and advocacy</span>
                 </a>
-                <a href="https://www.instagram.com/iamtamapr" target="_blank" rel="noopener" class="flex items-center gap-3 text-[14px] text-text-muted no-underline hover:text-terracotta transition-colors">
-                  <span class="text-terracotta">&#9679;</span> Instagram
+                <a href="https://www.instagram.com/iamtamapr" target="_blank" rel="noopener" class="flex items-start gap-3 text-[14px] text-text-muted no-underline hover:text-terracotta transition-colors">
+                  <span class="text-terracotta mt-0.5">&#9679;</span>
+                  <span><strong class="text-navy">Instagram</strong> &mdash; Behind the scenes, culture, and human moments</span>
                 </a>
               </div>
             </div>
@@ -116,16 +128,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-</BaseLayout>
+  <!-- Quote -->
+  <section class="py-16 bg-cream text-center">
+    <div class="max-w-[600px] mx-auto px-6 md:px-16 reveal">
+      <p class="font-serif text-[20px] italic text-navy leading-relaxed">
+        "Voice carries responsibility."
+      </p>
+      <span class="text-[13px] text-terracotta font-medium mt-3 block">&mdash; Tama PR</span>
+    </div>
+  </section>
 
-<style>
-  @media (max-width: 768px) {
-    section > div {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-</style>
+</BaseLayout>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;

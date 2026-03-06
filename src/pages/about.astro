@@ -5,40 +5,37 @@ import MagneticButton from '../components/MagneticButton.astro';
 
 const philosophy = [
   {
-    title: 'Listen Before We Speak',
-    description: 'Every engagement begins with deep listening — to your values, your audience, and the story that already exists beneath the surface.',
+    title: 'Honesty Over Noise',
+    description: 'Advocacy begins with honesty. Communication begins with courage. The truth doesn\'t always make friends \u2014 sometimes it makes waves. We believe meaningful PR starts by saying what needs to be said, clearly and responsibly.',
   },
   {
-    title: 'Truth Over Trend',
-    description: 'We don\'t chase algorithms or headlines. We build communication that endures because it\'s rooted in what\'s real.',
+    title: 'Sustainability with Substance',
+    description: 'Sustainability isn\'t a headline \u2014 it\'s a mindset. We tell stories that align purpose with practice, building trust that lasts longer than campaigns.',
   },
   {
-    title: 'Protect as We Amplify',
-    description: 'Storytelling carries responsibility. We ensure every voice is shared with dignity, consent, and context.',
+    title: 'Stories that Serve',
+    description: 'Real PR connects meaningfully. Every message we craft considers people, communities, and long-term impact \u2014 not just visibility or metrics.',
   },
 ];
 
 const pillars = [
-  { number: '01', title: 'Personal Branding & Voice', tagline: 'The foundation where all communication begins.' },
-  { number: '02', title: 'Communication & PR Education', tagline: 'Empowering through knowledge.' },
-  { number: '03', title: 'Advocacy & Ethical Storytelling', tagline: 'The purpose that fuels our work.' },
-  { number: '04', title: 'Corporate & Professional Communication', tagline: 'Building trust at an organizational level.' },
-  { number: '05', title: 'Lifestyle, Culture & Human Connection', tagline: 'The human layer of storytelling.' },
+  { number: '01', title: 'Personal Branding & Voice', tagline: 'The foundation where all communication begins.', subtitle: 'Because a voice that knows itself is never forgotten.' },
+  { number: '02', title: 'Communication & PR Education', tagline: 'Empowering through knowledge.', subtitle: 'Because understanding how communication works is the first step to using it well.' },
+  { number: '03', title: 'Advocacy & Ethical Storytelling', tagline: 'The purpose that fuels our work.', subtitle: 'Because some stories need more than amplification\u2014they need care.' },
+  { number: '04', title: 'Corporate & Professional Communication', tagline: 'Building trust at an organizational level.', subtitle: 'Because what happens inside shapes what the world hears.' },
+  { number: '05', title: 'Lifestyle, Culture & Human Connection', tagline: 'The human layer of storytelling.', subtitle: 'Because all communication starts with understanding people.' },
 ];
 ---
 
-<BaseLayout title="About" description="Learn about Tama PR — ethical PR & Communications consultancy rooted in authenticity, advocacy, and intentional storytelling.">
+<BaseLayout title="About" description="Where powerful communication begins with truth. Learn about Tama PR.">
 
   <!-- Hero -->
   <section class="pt-32 pb-16 bg-warm-white">
     <div class="max-w-[1200px] mx-auto px-6 md:px-16">
-      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">About</p>
+      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">About Tama PR</p>
       <h1 class="font-serif text-[36px] md:text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
-        Communication rooted in truth.
+        Where powerful communication begins with truth.
       </h1>
-      <p class="text-[16px] text-text-muted mt-4 max-w-[560px] reveal">
-        We believe the most powerful stories are the ones told with honesty, care, and intention.
-      </p>
     </div>
   </section>
 
@@ -47,25 +44,26 @@ const pillars = [
     <div class="max-w-[800px] mx-auto px-6 md:px-16">
       <div class="reveal">
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Who We Are</p>
-        <h2 class="font-serif text-[28px] md:text-[32px] text-navy mb-6">More than a PR agency.</h2>
         <div class="space-y-5 text-[16px] leading-[1.85] text-text-muted">
           <p>
-            Tama PR is an ethical communications consultancy based in Nairobi, Kenya. We work with individuals, organisations, and brands who believe that how you communicate matters just as much as what you communicate.
+            Tama PR is built on connection&mdash;not just messaging. We believe communication carries responsibility, not just reach.
           </p>
           <p>
-            We don't do spin. We don't manufacture narratives. Instead, we help you find the story that's already there — the one rooted in your values, your people, and the impact you're trying to create — and we help you tell it with clarity and conviction.
+            We operate at the intersection of clarity, empathy, and advocacy&mdash;prioritizing understanding before visibility, and intention before performance. Every engagement begins by listening: to the people behind the brand, the values they carry, and the real-world impact their voice creates.
           </p>
           <p>
-            Whether it's shaping a personal brand, building an organisation's voice, or navigating sensitive advocacy work, our approach is always the same: listen first, speak with intention, and protect every story we're entrusted with.
+            This is not transactional PR. It is thoughtful, ethical communication designed to build trust, protect narratives, and strengthen relationships&mdash;especially where communities, livelihoods, or sensitive stories are involved.
           </p>
         </div>
       </div>
 
-      <!-- Quote Card -->
+      <!-- Three-line tagline -->
       <div class="mt-10 bg-cream rounded-xl p-8 border-l-3 border-terracotta reveal">
-        <p class="font-serif text-[18px] italic text-navy leading-relaxed">
-          "We exist because we believe communication can be different — slower, more honest, and rooted in responsibility."
-        </p>
+        <div class="space-y-1 font-serif text-[18px] text-navy leading-relaxed">
+          <p>Authenticity guides the work.</p>
+          <p>Advocacy shapes the approach.</p>
+          <p>Truth remains the goal.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -78,17 +76,42 @@ const pillars = [
         <h2 class="font-serif text-[28px] md:text-[32px] text-navy mb-6">The story behind Tama PR.</h2>
         <div class="space-y-5 text-[16px] leading-[1.85] text-text-muted">
           <p>
-            Tama PR wasn't born from a business plan. It was born from a question: <em>What if communication could actually heal instead of harm?</em>
+            I've always been drawn to how people speak &mdash; and what they leave unsaid.
           </p>
           <p>
-            After years of working across advocacy, hospitality, and community development, Tama Munira Wazome saw the same pattern everywhere — organisations and individuals with powerful stories, but no framework to tell them ethically. Too often, the voices that mattered most were flattened into soundbites, stripped of context, or told by someone else entirely.
+            Long before PR became a profession for me, storytelling was how I made sense of the world. I listened closely. I noticed tone, pauses, intention. I paid attention to how words could soften a moment, or harden it. How they could create closeness &mdash; or distance.
           </p>
           <p>
-            Tama PR was created to change that. To build a practice where listening comes before strategy, where every story is told with the dignity it deserves, and where the people behind the narrative are never reduced to a headline.
+            As I moved through different spaces and industries, I began to see just how much power communication holds. I saw how stories could open doors, build trust, and give people a sense of belonging. But I also saw the other side &mdash; how easily stories could be rushed, simplified, or handled without care.
           </p>
           <p>
-            The name "Tama" means "precious" in Swahili — a reminder that every voice, every story, every person we work with carries inherent value. That belief isn't just our philosophy. It's our foundation.
+            Over time, what disturbed me wasn't the lack of storytelling, but the lack of responsibility around it. Visibility was often prioritized over dignity. Performance over truth. People were reduced to talking points, communities to campaigns, and lived experiences to content.
           </p>
+          <p>
+            That tension stayed with me.
+          </p>
+          <p>
+            Especially in spaces involving livelihoods, in vulnerability, or identity, I felt a quiet discomfort with how easily narratives could be shaped without consent, context, or care. I began asking myself harder questions &mdash; not just what story is being told, but who is telling it, who benefits, and who carries the consequences.
+          </p>
+          <p>
+            At some point, I realized I didn't want to just participate in communication as it was. I wanted to work differently. Slower. More intentionally. With curiosity instead of extraction. With listening before speaking.
+          </p>
+          <p class="font-serif text-navy text-[17px]">
+            Tama PR grew from that decision.
+          </p>
+          <p>
+            It exists because I believe voice carries responsibility. That behind every brand, every organization, every campaign, there are real people &mdash; with histories, values, and dignity &mdash; who deserve to be represented truthfully and thoughtfully.
+          </p>
+          <p>
+            This work is personal to me. It's shaped by observation, by listening, and by choosing to honor nuance in a world that often rewards noise. I believe stories should not only be effective, but ethical. Not only compelling, but considerate.
+          </p>
+        </div>
+
+        <!-- Closing statement -->
+        <div class="mt-8 space-y-1 font-serif text-[17px] text-navy">
+          <p>Tama PR is not about being the loudest in the room.</p>
+          <p>It's about being honest.</p>
+          <p>And using voice with intention.</p>
         </div>
       </div>
     </div>
@@ -113,25 +136,27 @@ const pillars = [
 
         <!-- Bio -->
         <div class="reveal reveal-delay-2">
-          <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Meet the Founder</p>
+          <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Meet Tama</p>
           <div class="space-y-5 text-[16px] leading-[1.85] text-text-muted">
             <p>
-              Tama is a communications professional and advocate whose career has been shaped by one driving conviction: that the way we tell stories can either empower or diminish the people within them.
-            </p>
-            <p>
-              With experience spanning hospitality consulting, nonprofit leadership, corporate communications, and personal brand development, she brings a rare breadth of perspective to every engagement. She is the Co-Founder of Afri Educare Alliance, where she embedded ethical storytelling into the organisation's DNA from its inception.
-            </p>
-            <p>
-              Her approach is quietly radical — she listens more than she speaks, asks questions others overlook, and believes that real impact doesn't need to be loud. It just needs to be honest.
+              A communications strategist, advocate, and storyteller committed to ethical, purpose-driven public relations. With a deep understanding of cultural narratives, media dynamics, and human-centered communication, Tama has built a practice rooted in listening, integrity, and intentional advocacy.
             </p>
           </div>
 
           <!-- A Note From Tama -->
           <div class="mt-8 bg-cream rounded-xl p-6 md:p-8 border-l-3 border-amber">
             <h4 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-amber mb-3">A Note From Tama</h4>
-            <p class="font-serif text-[17px] italic text-navy leading-relaxed">
-              "I started this work because I was tired of watching beautiful stories get lost in translation — or worse, get told without the consent of the people who lived them. Every client I work with deserves communication that protects them as much as it amplifies them. That's the standard I hold myself to, always."
-            </p>
+            <div class="space-y-4 font-serif text-[17px] italic text-navy leading-relaxed">
+              <p>
+                This work is my response to a question I carried for years: What if communication could be different? Slower. More honest. Rooted in responsibility rather than reach.
+              </p>
+              <p>
+                Every client I take on, every story I help shape, is an extension of that question. I don't have all the answers&mdash;but I show up with curiosity, care, and the belief that your voice matters.
+              </p>
+              <p>
+                If that resonates with you, I'd love to listen.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -142,11 +167,8 @@ const pillars = [
   <section class="py-20 bg-cream">
     <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="text-center mb-12 reveal">
-        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">How We Work</p>
-        <h2 class="font-serif text-[28px] md:text-[32px] text-navy">Our philosophy.</h2>
-        <p class="text-[15px] text-text-muted mt-3 max-w-[500px] mx-auto">
-          Three principles that guide every conversation, every strategy, and every story we help tell.
-        </p>
+        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Our Philosophy</p>
+        <h2 class="font-serif text-[28px] md:text-[32px] text-navy">PR should be as real as the people it represents.</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {philosophy.map((item, i) => (
@@ -159,12 +181,14 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Five Pillars -->
+  <!-- Our Lenses / Five Pillars -->
   <section class="py-20 bg-navy">
     <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="text-center mb-14 reveal">
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-amber/50 mb-5">Our Lenses</p>
-        <h2 class="font-serif text-[28px] md:text-[32px] text-white">Five pillars that guide every conversation.</h2>
+        <h2 class="font-serif text-[24px] md:text-[32px] text-white max-w-[600px] mx-auto">
+          Tama PR stands on five pillars &mdash; the lenses through which we communicate, create, educate, and advocate.
+        </h2>
       </div>
       <div class="space-y-4">
         {pillars.map((p, i) => (
@@ -172,7 +196,8 @@ const pillars = [
             <span class="text-[13px] font-semibold text-amber/50 mt-0.5">{p.number}</span>
             <div>
               <h3 class="font-serif text-[18px] text-white mb-1">{p.title}</h3>
-              <p class="text-[14px] text-white/40">{p.tagline}</p>
+              <p class="text-[14px] text-white/50 mb-0.5">{p.tagline}</p>
+              <p class="text-[13px] text-white/30 italic">{p.subtitle}</p>
             </div>
           </div>
         ))}
@@ -185,7 +210,7 @@ const pillars = [
     <div class="max-w-[600px] mx-auto px-6 md:px-16 reveal">
       <h2 class="font-serif text-[28px] md:text-[32px] text-navy mb-4">Ready to begin?</h2>
       <p class="text-[16px] text-text-muted mb-8">No pressure. No pitch. Just listening.</p>
-      <MagneticButton href="/contact" variant="primary">Start Your Story</MagneticButton>
+      <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
     </div>
   </section>
 
