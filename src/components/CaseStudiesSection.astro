@@ -1,0 +1,67 @@
+---
+import CaseStudyCard from './CaseStudyCard.astro';
+
+const caseStudies = [
+  {
+    title: 'Diani Sea Hotels',
+    role: 'Guest Experience & Relations Consultant',
+    description: 'A partnership to translate the intrinsic warmth of Diani Sea Lodge and Resort into a consistent, brand-defining narrative.',
+    pillars: ['Lifestyle & Culture', 'PR Education', 'Corporate Communication'],
+    href: '/projects/diani-sea-hotels',
+    gradient: 'bg-gradient-to-br from-[#1B4A3A] to-[#2A6B5A]',
+  },
+  {
+    title: 'Afri Educare Alliance',
+    role: 'Co-Founder & Communications Lead',
+    description: 'A foundational partnership where ethical storytelling was embedded into the organization\'s DNA from the very start.',
+    pillars: ['Advocacy', 'Ethical Storytelling', 'Personal Branding'],
+    href: '/projects/afri-educare-alliance',
+    gradient: 'bg-gradient-to-br from-[#4A2A1B] to-[#6B3A2A]',
+  },
+];
+---
+
+<section class="py-24 bg-cream">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+        Projects
+      </p>
+      <h2 class="font-serif text-[36px] lg:text-[42px] text-navy leading-tight">
+        Collaboration in action.
+      </h2>
+      <p class="text-[16px] text-text-muted mt-4 max-w-[480px] mx-auto">
+        Every client partnership tells a story — not about ownership, but about shared purpose.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {caseStudies.map((study, i) => (
+        <CaseStudyCard
+          title={study.title}
+          role={study.role}
+          description={study.description}
+          pillars={study.pillars}
+          href={study.href}
+          gradient={study.gradient}
+          delay={i + 1}
+        />
+      ))}
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="/projects" class="inline-block text-[14px] font-medium text-terracotta border-b border-terracotta/30 pb-0.5 no-underline hover:border-terracotta transition-colors duration-300">
+        View All Projects &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

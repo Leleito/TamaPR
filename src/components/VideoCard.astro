@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  thumbnail?: string;
+  duration?: string;
+  series?: string;
+  href: string;
+}
+
+const { title, description, thumbnail, duration, series, href } = Astro.props;
+---
+
+<a href={href} class="group block bg-warm-white border border-navy/[0.06] rounded-xl overflow-hidden transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+  <div class="relative aspect-video bg-navy/5 overflow-hidden">
+    {thumbnail ? (
+      <img src={thumbnail} alt={title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-navy/10 to-terracotta/10">
+        <svg class="w-12 h-12 text-navy/20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+    )}
+    <!-- Play overlay -->
+    <div class="absolute inset-0 flex items-center justify-center bg-navy/0 group-hover:bg-navy/20 transition-colors duration-500">
+      <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
+        <svg class="w-5 h-5 text-terracotta ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+    </div>
+    <!-- Duration badge -->
+    {duration && (
+      <span class="absolute bottom-3 right-3 bg-navy/80 text-white text-[11px] font-medium px-2 py-0.5 rounded">
+        {duration}
+      </span>
+    )}
+  </div>
+  <div class="p-5">
+    {series && (
+      <p class="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta mb-2">{series}</p>
+    )}
+    <h3 class="font-serif text-[18px] text-navy mb-2 group-hover:text-terracotta transition-colors duration-300">{title}</h3>
+    <p class="text-[14px] text-text-muted leading-relaxed line-clamp-2">{description}</p>
+  </div>
+</a>

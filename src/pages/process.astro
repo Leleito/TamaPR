@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MagneticButton from '../components/MagneticButton.astro';
+
+const steps = [
+  { number: '01', title: 'Listen', desc: 'We begin with conversation — not assumptions. I ask questions, listen to what\'s said and unsaid, and understand the values, challenges, and hopes that shape your work. This phase ends with clarity, not a contract.', time: '1-2 conversations' },
+  { number: '02', title: 'Strategize', desc: 'Based on what I\'ve heard, I present a tailored proposal: objectives, approach, timeline, and investment. No templates. No pressure. Just a plan built for you.', time: '1 week after listening' },
+  { number: '03', title: 'Collaborate', desc: 'We work side by side. Whether it\'s training your team, crafting narratives, or building communication systems — I\'m in it with you, not directing from a distance.', time: 'Varies by scope' },
+  { number: '04', title: 'Reflect', desc: 'We review what worked, what shifted, and what lasting value was created. Because communication isn\'t a one-time fix — it\'s an ongoing practice.', time: 'Built into every engagement' },
+];
+
+const discoverySteps = [
+  '30 minutes. No pitch. No pressure.',
+  'I listen to your goals, challenges, and what brought you here.',
+  'You get a sense of who I am and how I work.',
+  'If there\'s alignment, I\'ll share what a partnership could look like.',
+  'If not, I\'ll tell you honestly — and might point you elsewhere.',
+];
+
+const faqs = [
+  { q: 'How long do engagements typically last?', a: 'It depends on your needs. Some clients start with a single workshop or audit. Others work with me on a monthly retainer for ongoing strategic support. We\'ll find what fits.' },
+  { q: 'Do you work with clients outside Nairobi?', a: 'Yes. I work virtually with clients across Kenya and beyond. For hospitality brands, on-site training can be arranged.' },
+  { q: 'What\'s the difference between a Storytelling Audit and a Workshop?', a: 'An Audit is a diagnostic — 1 hour deep dive + 3-page report with recommendations. A Workshop is hands-on training for your team (half-day, on-site or virtual).' },
+  { q: 'How do I know which service is right for me?', a: 'That\'s what the discovery call is for. We\'ll explore your needs together and find the right fit.' },
+];
+---
+
+<BaseLayout title="How We Work" description="Not transactions. Partnerships. Learn about our process and what working with Tama PR feels like.">
+
+  <section class="pt-32 pb-16 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">How We Work</p>
+      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[600px] reveal">
+        Not transactions.<br />Partnerships.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Our Clients -->
+  <section class="py-20 bg-warm-white">
+    <div class="max-w-[800px] mx-auto px-16">
+      <div class="reveal">
+        <h2 class="font-serif text-[28px] text-navy mb-6">What Working With Tama PR Feels Like</h2>
+        <p class="text-[16px] leading-[1.8] text-text-muted mb-8">
+          This isn't transactional PR. There are no templates, no rushed campaigns, no voices extracted without care.
+        </p>
+        <div class="space-y-6">
+          <div class="pl-6 border-l-2 border-terracotta/20">
+            <h3 class="font-serif text-[17px] text-navy mb-1">A partner who listens first.</h3>
+            <p class="text-[14px] text-text-muted">I don't come with assumptions. I come with curiosity.</p>
+          </div>
+          <div class="pl-6 border-l-2 border-terracotta/20">
+            <h3 class="font-serif text-[17px] text-navy mb-1">A framework that holds your story with care.</h3>
+            <p class="text-[14px] text-text-muted">Through the five pillars, every piece of communication is filtered through lenses of authenticity, ethics, and human connection.</p>
+          </div>
+          <div class="pl-6 border-l-2 border-terracotta/20">
+            <h3 class="font-serif text-[17px] text-navy mb-1">Honesty, even when it's uncomfortable.</h3>
+            <p class="text-[14px] text-text-muted">I won't tell you what you want to hear. I'll tell you what your story needs.</p>
+          </div>
+          <div class="pl-6 border-l-2 border-terracotta/20">
+            <h3 class="font-serif text-[17px] text-navy mb-1">Work that lasts beyond a campaign.</h3>
+            <p class="text-[14px] text-text-muted">I build frameworks, not dependencies. Your voice becomes unmistakably yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-20 bg-off-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <div class="text-center mb-14 reveal">
+        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Our Process</p>
+        <h2 class="font-serif text-[32px] text-navy">Every engagement follows four steps.</h2>
+        <p class="text-[15px] text-text-muted mt-2">Not as a checklist, but as a rhythm.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step, i) => (
+          <div class={`group bg-warm-white border border-navy/[0.06] rounded-xl p-7 transition-all duration-500 hover:bg-navy hover:border-navy hover:shadow-lg reveal reveal-delay-${i + 1}`}>
+            <span class="block text-[11px] font-semibold tracking-[2px] text-terracotta/60 mb-3 transition-colors duration-500 group-hover:text-amber/60">{step.number}</span>
+            <h3 class="font-serif text-[22px] text-navy mb-3 transition-colors duration-500 group-hover:text-white">{step.title}</h3>
+            <p class="text-[14px] leading-relaxed text-text-muted mb-4 transition-colors duration-500 group-hover:text-white/50">{step.desc}</p>
+            <span class="text-[12px] text-text-soft transition-colors duration-500 group-hover:text-white/30">{step.time}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Discovery Call -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-[700px] mx-auto px-16 text-center">
+      <div class="reveal">
+        <h2 class="font-serif text-[28px] text-navy mb-4">What Happens on a Discovery Call</h2>
+        <p class="text-[15px] text-text-muted mb-8">If you're wondering what the first step looks like:</p>
+        <ul class="text-left space-y-3 max-w-[480px] mx-auto mb-10">
+          {discoverySteps.map((step) => (
+            <li class="flex gap-3 text-[14px] text-text-muted">
+              <span class="text-terracotta mt-0.5">&#10003;</span>
+              {step}
+            </li>
+          ))}
+        </ul>
+        <p class="text-[15px] text-text-muted italic mb-8">That's it.</p>
+        <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-warm-white">
+    <div class="max-w-[700px] mx-auto px-16">
+      <h2 class="font-serif text-[28px] text-navy mb-10 text-center reveal">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqs.map((faq, i) => (
+          <details class={`group bg-off-white border border-navy/[0.06] rounded-lg reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <summary class="flex justify-between items-center cursor-pointer p-6 text-[15px] font-medium text-navy list-none">
+              {faq.q}
+              <span class="text-terracotta transition-transform duration-300 group-open:rotate-45 text-[20px] ml-4">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-[14px] leading-relaxed text-text-muted">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-navy text-center">
+    <div class="max-w-[600px] mx-auto px-16 reveal">
+      <h2 class="font-serif text-[32px] text-white mb-4">Ready to begin?</h2>
+      <p class="text-[16px] text-white/40 mb-8">The first step is a conversation. No pressure. Just listening.</p>
+      <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

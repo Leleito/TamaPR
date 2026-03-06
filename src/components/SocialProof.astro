@@ -1,0 +1,33 @@
+---
+const outlets = [
+  'Business Daily',
+  'The Standard',
+  'Nation Media',
+  'KTN News',
+  'Capital FM',
+];
+---
+
+<section class="bg-cream py-10 border-y border-navy/[0.04]">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="flex items-center justify-center gap-12 flex-wrap">
+      <span class="text-[10px] font-semibold tracking-[2px] uppercase text-text-soft">
+        As Featured In
+      </span>
+      {outlets.map((name) => (
+        <span class="font-serif text-[15px] text-navy/20 tracking-wide">
+          {name}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

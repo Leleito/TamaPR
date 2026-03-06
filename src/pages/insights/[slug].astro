@@ -1,0 +1,132 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import MagneticButton from '../../components/MagneticButton.astro';
+import { client } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  // Try fetching from Sanity, fallback to hardcoded slugs
+  let posts: any[] = [];
+  try {
+    posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current, title, excerpt, "category": pillar->title, publishedAt, body, pullQuote }`);
+  } catch (e) {
+    // Sanity not available, use fallback content
+  }
+
+  if (posts.length > 0) {
+    return posts.map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+  }
+
+  // Fallback hardcoded posts for static build
+  return [
+    {
+      params: { slug: 'introducing-tama-pr' },
+      props: {
+        post: {
+          title: 'Introducing Tama PR: The Power of Honest Communication',
+          excerpt: 'Why I started this journey — and what honest PR really means.',
+          category: 'Ethical Communication',
+          categoryClass: 'cat-ethical',
+          publishedAt: '2026-03-01',
+          readTime: '6 min',
+          pullQuote: 'PR, to me, isn\'t a job title or a project. It\'s part of who I am.',
+          content: 'hardcoded',
+        },
+      },
+    },
+    {
+      params: { slug: 'truth-and-waves' },
+      props: {
+        post: {
+          title: 'Truth & Waves: When Honesty Makes Change',
+          excerpt: 'Reflections on why the truth doesn\'t always make friends — but always makes waves.',
+          category: 'Advocacy',
+          categoryClass: 'cat-ethical',
+          publishedAt: '2026-02-15',
+          readTime: '5 min',
+          pullQuote: 'The truth doesn\'t always make friends — sometimes it makes waves.',
+          content: 'hardcoded',
+        },
+      },
+    },
+    {
+      params: { slug: 'mobility-and-meaning' },
+      props: {
+        post: {
+          title: 'Mobility & Meaning: The Ride-Hail Reality',
+          excerpt: 'Behind the convenience, there are stories of dignity, livelihood, and economic justice.',
+          category: 'Community',
+          categoryClass: 'cat-community',
+          publishedAt: '2026-02-01',
+          readTime: '7 min',
+          pullQuote: 'Behind the convenience, there are stories of dignity.',
+          content: 'hardcoded',
+        },
+      },
+    },
+  ];
+}
+
+const { post } = Astro.props;
+---
+
+<BlogLayout
+  title={post.title}
+  description={post.excerpt}
+  category={post.category}
+  categoryClass={post.categoryClass || 'cat-ethical'}
+  publishedAt={post.publishedAt}
+  readTime={post.readTime || '5 min'}
+  pullQuote={post.pullQuote}
+>
+  {post.content === 'hardcoded' ? (
+    <Fragment>
+      <p>
+        This is where the full article content will appear once published through Sanity CMS.
+        Each insight is carefully crafted to reflect the values and philosophy of Tama PR —
+        honest, intentional, and always rooted in purpose.
+      </p>
+
+      <h2>Why This Matters</h2>
+      <p>
+        Communication is not just about what you say — it's about what you choose to honour
+        in the telling. Every story carries weight. Every narrative choice has consequences.
+        At Tama PR, we believe in approaching each story with the care it deserves.
+      </p>
+
+      <blockquote>
+        Authenticity isn't a strategy. It's the only sustainable foundation for meaningful communication.
+      </blockquote>
+
+      <h2>Looking Forward</h2>
+      <p>
+        This space will grow as we share more insights, reflections, and perspectives on
+        ethical communication, advocacy, and the intersection of storytelling and justice.
+        Subscribe to our newsletter to stay connected.
+      </p>
+
+      <hr />
+
+      <p>
+        <em>Want to continue the conversation? <a href="/contact">Reach out</a> — we'd love to hear from you.</em>
+      </p>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <!-- Sanity portable text would be rendered here -->
+      <p>{post.excerpt}</p>
+      <p>Full content managed through Sanity CMS.</p>
+    </Fragment>
+  )}
+
+  <!-- Article Footer CTA -->
+  <div class="mt-16 p-8 bg-cream rounded-xl text-center">
+    <h3 class="font-serif text-[22px] text-navy mb-3">Enjoyed this insight?</h3>
+    <p class="text-[14px] text-text-muted mb-6 max-w-[400px] mx-auto">
+      Subscribe for honest thoughts on PR, storytelling, and advocacy — no spam, just substance.
+    </p>
+    <MagneticButton href="/insights" variant="secondary">Explore More Insights</MagneticButton>
+  </div>
+</BlogLayout>

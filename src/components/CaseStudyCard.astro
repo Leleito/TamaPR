@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  role: string;
+  description: string;
+  pillars: string[];
+  href: string;
+  gradient: string;
+  delay?: number;
+}
+
+const { title, role, description, pillars, href, gradient, delay = 0 } = Astro.props;
+---
+
+<a href={href} class={`case-study-card group block rounded-xl overflow-hidden no-underline transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-${delay}`}>
+  <div class={`h-[200px] ${gradient} flex items-end p-6`}>
+    <h3 class="font-serif text-[24px] text-white">{title}</h3>
+  </div>
+  <div class="bg-warm-white p-7 border border-t-0 border-navy/[0.06] rounded-b-xl">
+    <p class="text-[12px] font-semibold tracking-[1px] uppercase text-terracotta mb-3">{role}</p>
+    <p class="text-[14px] leading-relaxed text-text-muted mb-5 line-clamp-3">{description}</p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {pillars.map((pillar) => (
+        <span class="text-[11px] px-2.5 py-1 rounded-full bg-navy/[0.04] text-text-soft">
+          {pillar}
+        </span>
+      ))}
+    </div>
+    <span class="text-[13px] font-medium text-terracotta group-hover:text-terracotta-hover transition-colors duration-300">
+      View Case Study &rarr;
+    </span>
+  </div>
+</a>

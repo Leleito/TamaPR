@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MagneticButton from '../../components/MagneticButton.astro';
+---
+
+<BaseLayout title="Diani Sea Hotels" description="Case study: Translating warmth into story. Guest Experience & Relations Consultant.">
+
+  <section class="pt-32 pb-12 bg-warm-white">
+    <div class="max-w-[800px] mx-auto px-16">
+      <a href="/projects" class="text-[13px] text-text-soft no-underline hover:text-terracotta transition-colors mb-6 inline-block reveal">&larr; Back to Projects</a>
+      <h1 class="font-serif text-[38px] lg:text-[48px] text-navy leading-[1.1] reveal">Diani Sea Hotels</h1>
+      <p class="font-serif text-[20px] text-text-muted mt-3 reveal">Translating warmth into story.</p>
+    </div>
+  </section>
+
+  <section class="py-6 bg-warm-white">
+    <div class="max-w-[800px] mx-auto px-16">
+      <div class="flex flex-wrap gap-6 text-[13px] text-text-soft border-y border-navy/[0.06] py-5 reveal">
+        <div><span class="text-navy font-medium">Client:</span> Diani Sea Lodge & Diani Sea Resort</div>
+        <div><span class="text-navy font-medium">Role:</span> Guest Experience & Relations Consultant</div>
+        <div><span class="text-navy font-medium">Timeline:</span> Ongoing since 2025</div>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-4 reveal">
+        <span class="text-[11px] px-3 py-1 rounded-full cat-lifestyle">Lifestyle & Culture</span>
+        <span class="text-[11px] px-3 py-1 rounded-full cat-ethical">PR Education</span>
+        <span class="text-[11px] px-3 py-1 rounded-full cat-corporate">Corporate Communication</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-warm-white">
+    <div class="max-w-[800px] mx-auto px-16 space-y-12">
+      <div class="reveal">
+        <h2 class="font-serif text-[24px] text-navy mb-4">The Core Opportunity</h2>
+        <p class="text-[16px] leading-[1.8] text-text-muted">
+          Diani Sea Properties wasn't lacking in warmth or beauty; their challenge was one of consistent translation. How could the authentic, informal hospitality deeply felt on the ground be reliably communicated at every brand touchpoint? The risk was that a guest's experience would feel transactional rather than culturally connected.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <h2 class="font-serif text-[24px] text-navy mb-4">The Approach: Listening Before Speaking</h2>
+        <p class="text-[16px] leading-[1.8] text-text-muted mb-4">
+          True to our philosophy, we began not with solutions, but with deep listening. We audited the guest journey not just for efficiency, but for narrative gaps where the story of the place was being left untold.
+        </p>
+        <p class="text-[16px] leading-[1.8] text-text-muted">Our work was applied through three key lenses:</p>
+        <ul class="mt-3 space-y-3 text-[15px] text-text-muted">
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> <span><strong class="text-navy">Lifestyle, Culture & Human Connection:</strong> Mapping how local culture and community values could be woven into interactions, not just decor.</span></li>
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> <span><strong class="text-navy">Communication & PR Education:</strong> Creating simple, empowering tools and training to turn staff from service providers into confident culture-bearers.</span></li>
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> <span><strong class="text-navy">Corporate & Professional Communication:</strong> Aligning messaging across departments to present one cohesive, authentic brand story.</span></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h2 class="font-serif text-[24px] text-navy mb-4">The Work: Building Frameworks, Not Just Fixes</h2>
+        <ul class="space-y-3 text-[15px] text-text-muted">
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> Audited the guest journey with a focus on missed storytelling opportunities</li>
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> Co-created messaging frameworks with staff, highlighting the unique culture of each property</li>
+          <li class="flex gap-3"><span class="text-terracotta mt-1">&#9679;</span> Designed training focused on "the why" behind interactions — fostering authentic engagement rather than scripted service</li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h2 class="font-serif text-[24px] text-navy mb-4">The Shift: From Service to Story</h2>
+        <div class="space-y-4 text-[15px] text-text-muted">
+          <p><strong class="text-navy">For Guests:</strong> Experiences became more personal and memorable, moving beyond "all-inclusive" to "culturally connected."</p>
+          <p><strong class="text-navy">For the Brand:</strong> The properties' public perception evolved to be seen as genuinely guest-centered and culturally conscious.</p>
+          <p><strong class="text-navy">For the Team:</strong> Staff were equipped with lasting frameworks to continue authentic communication.</p>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="bg-cream rounded-xl p-8 border-l-4 border-terracotta reveal">
+        <p class="font-serif text-[20px] italic text-navy leading-relaxed mb-3">
+          "Tama didn't just train our staff — she helped us understand that our people are our story."
+        </p>
+        <span class="text-[13px] text-terracotta font-medium">— Tom Odhiambo, General Manager</span>
+      </div>
+
+      <div class="text-center pt-4 reveal">
+        <p class="text-[16px] text-text-muted mb-6">Your property has its own warmth. Let's make sure every guest feels it.</p>
+        <MagneticButton href="/contact" variant="primary">Let's Talk About Your Property</MagneticButton>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

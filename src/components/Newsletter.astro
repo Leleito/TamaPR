@@ -1,0 +1,76 @@
+---
+---
+
+<section class="py-20 bg-cream">
+  <div class="max-w-[600px] mx-auto px-16 text-center reveal">
+    <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+      Newsletter
+    </p>
+    <h2 class="font-serif text-[30px] lg:text-[36px] text-navy leading-tight mb-4">
+      Stories, reflections, and perspectives.
+    </h2>
+    <p class="text-[15px] text-text-muted mb-8">
+      No spam. Just honest thoughts on PR, storytelling, and advocacy — delivered to your inbox.
+    </p>
+
+    <form id="newsletter-form" class="flex gap-3 max-w-[460px] mx-auto">
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        required
+        class="flex-1 px-5 py-3 rounded-lg border border-navy/[0.08] bg-warm-white text-[14px] text-navy placeholder:text-text-soft focus:outline-none focus:border-terracotta/40 transition-colors duration-300"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-terracotta text-white text-[14px] font-medium rounded-lg hover:bg-terracotta-hover transition-colors duration-300 whitespace-nowrap"
+      >
+        Subscribe
+      </button>
+    </form>
+
+    <p class="text-[12px] text-text-soft mt-4">
+      We respect your privacy. Unsubscribe anytime.
+    </p>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    form {
+      flex-direction: column;
+    }
+
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const email = formData.get('email');
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        if (res.ok) {
+          form.innerHTML = '<p class="text-olive text-[15px] font-medium py-3">Thank you! You\'re subscribed.</p>';
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      } catch {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  }
+</script>

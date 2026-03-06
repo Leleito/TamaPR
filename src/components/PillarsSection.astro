@@ -1,0 +1,74 @@
+---
+import PillarCard from './PillarCard.astro';
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Personal Branding & Voice',
+    description: 'The foundation where all communication begins. A voice that knows itself is never forgotten.',
+  },
+  {
+    number: '02',
+    title: 'Communication & PR Education',
+    description: 'Empowering through knowledge. Understanding how communication works is the first step to using it well.',
+  },
+  {
+    number: '03',
+    title: 'Advocacy & Ethical Storytelling',
+    description: 'The purpose that fuels our work. Some stories need more than amplification — they need care.',
+  },
+  {
+    number: '04',
+    title: 'Corporate & Professional Communication',
+    description: 'Building trust at an organizational level. What happens inside shapes what the world hears.',
+  },
+  {
+    number: '05',
+    title: 'Lifestyle, Culture & Human Connection',
+    description: 'The human layer of storytelling. All communication starts with understanding people.',
+  },
+];
+---
+
+<section class="bg-navy py-24">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[11px] font-semibold tracking-[2px] uppercase text-amber/60 mb-5">
+        Our Lenses
+      </p>
+      <h2 class="font-serif text-[36px] lg:text-[42px] text-white leading-tight">
+        Five pillars that guide<br />every conversation.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+      {pillars.map((pillar, i) => (
+        <PillarCard
+          number={pillar.number}
+          title={pillar.title}
+          description={pillar.description}
+          delay={i + 1}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

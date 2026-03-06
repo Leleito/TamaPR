@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+/* ============================================
+   TamaPR Design Tokens
+   ============================================ */
+@theme {
+  --color-navy: #1B2A4A;
+  --color-navy-deep: #141F36;
+  --color-terracotta: #B85C3C;
+  --color-terracotta-hover: #A04E30;
+  --color-olive: #6B7F3B;
+  --color-amber: #D4A843;
+  --color-cream: #F5F0E8;
+  --color-warm-white: #FDFBF7;
+  --color-off-white: #FAF8F4;
+  --color-text-dark: #2C2C2C;
+  --color-text-muted: #6B6B6B;
+  --color-text-soft: #8A8A8A;
+  --color-footer-bg: #0C1220;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-dark);
+  background: var(--color-warm-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+}
+
+/* ============================================
+   Scroll Reveal Animation System
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ============================================
+   Letter-by-Letter Animation
+   ============================================ */
+.split-text .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.split-text.animate .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Fade-Up Animation
+   ============================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+@keyframes loaderPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes loaderProgress {
+  0% { width: 0; }
+  70% { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* ============================================
+   Magnetic Button
+   ============================================ */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-terracotta);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-terracotta);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-hover .cursor-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--color-amber);
+}
+
+.cursor-hover .cursor-ring {
+  width: 52px;
+  height: 52px;
+  border-color: var(--color-amber);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   Page Loader
+   ============================================ */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-warm-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+
+.loader-bar-track {
+  width: 120px;
+  height: 2px;
+  background: rgba(20, 31, 54, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  height: 100%;
+  background: var(--color-terracotta);
+  border-radius: 2px;
+  animation: loaderProgress 1.5s ease forwards;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  z-index: 100;
+  transition: all 0.4s ease;
+}
+
+.nav.hero-nav {
+  background: transparent;
+}
+
+.nav.hero-nav .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav.hero-nav .nav-link:hover {
+  color: white;
+}
+
+.nav.hero-nav .nav-logo-text {
+  color: white;
+}
+
+.nav.scrolled {
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(27, 42, 74, 0.06);
+}
+
+.nav.scrolled .nav-link {
+  color: var(--color-text-muted);
+}
+
+.nav.scrolled .nav-link:hover {
+  color: var(--color-navy);
+}
+
+.nav.scrolled .nav-logo-text {
+  color: var(--color-navy);
+}
+
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 24px;
+  }
+}
+
+/* ============================================
+   Category Badges
+   ============================================ */
+.cat-ethical {
+  background: rgba(107, 127, 59, 0.1);
+  color: var(--color-olive);
+}
+.cat-hospitality {
+  background: rgba(184, 92, 60, 0.1);
+  color: var(--color-terracotta);
+}
+.cat-lifestyle {
+  background: rgba(212, 168, 67, 0.12);
+  color: #A07B2E;
+}
+.cat-community {
+  background: rgba(27, 42, 74, 0.08);
+  color: var(--color-navy);
+}
+.cat-corporate {
+  background: rgba(212, 168, 67, 0.1);
+  color: var(--color-amber);
+}
+
+/* ============================================
+   Reading Progress Bar (Blog)
+   ============================================ */
+.reading-progress {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  height: 2px;
+  background: var(--color-terracotta);
+  z-index: 99;
+  transition: width 0.1s linear;
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .fade-up,
+  .split-text .char,
+  .magnetic-btn {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .page-loader {
+    display: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}

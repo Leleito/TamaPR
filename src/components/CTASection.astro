@@ -1,0 +1,37 @@
+---
+import MagneticButton from './MagneticButton.astro';
+---
+
+<section class="relative py-28 bg-navy overflow-hidden">
+  <!-- Ambient glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber/[0.06] rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-[700px] mx-auto px-16 text-center reveal">
+    <p class="text-[11px] font-semibold tracking-[2px] uppercase text-amber/50 mb-6">
+      Ready?
+    </p>
+    <h2 class="font-serif text-[36px] lg:text-[48px] text-white leading-tight mb-6">
+      Let's begin with a conversation.
+    </h2>
+    <p class="text-[16px] text-white/40 mb-10 max-w-[480px] mx-auto">
+      No pressure. No pitch. Just listening. The first step is always a conversation.
+    </p>
+    <div class="flex justify-center gap-4 flex-wrap">
+      <MagneticButton href="/contact" variant="primary">
+        Start Your Story
+      </MagneticButton>
+      <MagneticButton href="/process" variant="secondary">
+        How We Work
+      </MagneticButton>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div:last-child {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import MagneticButton from '../../components/MagneticButton.astro';
+
+const projects = [
+  {
+    title: 'Diani Sea Hotels',
+    role: 'Guest Experience & Relations Consultant',
+    description: 'A partnership to translate the intrinsic warmth of Diani Sea Lodge and Diani Sea Resort into a consistent, brand-defining narrative. Moving beyond standard hospitality training to develop communication frameworks that empowered staff as genuine storytellers.',
+    pillars: ['Lifestyle & Culture', 'PR Education', 'Corporate Communication'],
+    href: '/projects/diani-sea-hotels',
+    gradient: 'bg-gradient-to-br from-[#1B4A3A] to-[#2A6B5A]',
+  },
+  {
+    title: 'Afri Educare Alliance',
+    role: 'Co-Founder, Board Member & Communications Lead',
+    description: 'A foundational partnership where ethical storytelling was embedded into the organization\'s DNA from the start — championing access to education and supporting communities to reclaim their dignity.',
+    pillars: ['Advocacy', 'Ethical Storytelling', 'Personal Branding'],
+    href: '/projects/afri-educare-alliance',
+    gradient: 'bg-gradient-to-br from-[#4A2A1B] to-[#6B3A2A]',
+  },
+];
+---
+
+<BaseLayout title="Projects" description="Collaboration in action. Explore our case studies and client partnerships.">
+
+  <section class="pt-32 pb-16 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Projects</p>
+      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
+        Collaboration in action.
+      </h1>
+      <p class="text-[16px] text-text-muted mt-4 max-w-[560px] reveal">
+        Every client partnership tells a story — not about ownership, but about shared purpose. Here are a few of the stories we've helped tell.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {projects.map((project, i) => (
+          <CaseStudyCard
+            title={project.title}
+            role={project.role}
+            description={project.description}
+            pillars={project.pillars}
+            href={project.href}
+            gradient={project.gradient}
+            delay={i + 1}
+          />
+        ))}
+
+        <!-- Future Project Placeholder -->
+        <div class="flex items-center justify-center bg-off-white border-2 border-dashed border-navy/[0.08] rounded-xl p-12 reveal reveal-delay-3">
+          <div class="text-center">
+            <span class="text-[32px] mb-4 block opacity-20">+</span>
+            <p class="font-serif text-[18px] text-navy/30">Coming soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream text-center">
+    <div class="max-w-[600px] mx-auto px-16 reveal">
+      <h2 class="font-serif text-[32px] text-navy mb-4">Ready to tell your story?</h2>
+      <p class="text-[16px] text-text-muted mb-8">If you see something here that resonates — or have a story you think needs telling — let's begin.</p>
+      <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

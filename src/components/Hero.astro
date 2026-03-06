@@ -1,0 +1,121 @@
+---
+import heroBg from '../assets/images/hero-bg.jpg';
+import tamaPortrait from '../assets/images/tama-portrait.jpg';
+import MagneticButton from './MagneticButton.astro';
+---
+
+<section class="hero-section relative min-h-screen flex items-center overflow-hidden">
+  <!-- Parallax Background -->
+  <div class="absolute inset-0 z-0" id="hero-parallax">
+    <img
+      src={heroBg.src}
+      alt=""
+      class="w-full h-[120%] object-cover object-center"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[rgba(20,31,54,0.98)] via-[rgba(20,31,54,0.85)] to-[rgba(20,31,54,0.3)]"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-[1200px] mx-auto px-16 w-full pt-[72px]">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center min-h-[calc(100vh-72px)]">
+      <div class="max-w-[600px]">
+        <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-amber mb-6 fade-up">
+          Ethical PR & Communications
+        </p>
+        <h1 class="font-serif text-[52px] lg:text-[64px] font-semibold leading-[1.1] text-white mb-8 split-text" id="hero-heading">
+          Where powerful communication begins with truth.
+        </h1>
+        <p class="text-[17px] leading-relaxed text-white/60 mb-10 fade-up max-w-[480px]">
+          Rooted in authenticity. Guided by advocacy. Strategic PR & Communications from Nairobi, Kenya.
+        </p>
+        <div class="flex flex-wrap gap-4 fade-up">
+          <MagneticButton href="/contact" variant="primary">
+            Start Your Story
+          </MagneticButton>
+          <MagneticButton href="/about" variant="secondary">
+            Learn More
+          </MagneticButton>
+        </div>
+      </div>
+
+      <!-- Floating Card -->
+      <div class="hidden lg:block">
+        <div class="bg-white/[0.06] backdrop-blur-lg border border-white/[0.08] rounded-2xl p-8 w-[300px] fade-up">
+          <img
+            src={tamaPortrait.src}
+            alt="Tama Munira Wazome"
+            class="w-[100px] h-[100px] rounded-full object-cover mx-auto mb-5 border-2 border-amber/30"
+          />
+          <h3 class="font-serif text-lg text-white text-center mb-1">Tama Munira Wazome</h3>
+          <p class="text-[13px] text-white/40 text-center mb-4">Founder & Communications Lead</p>
+          <p class="text-[13px] leading-relaxed text-white/30 text-center italic">
+            "Voice carries responsibility."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-40">
+    <span class="text-[10px] tracking-[2px] uppercase text-white">Scroll</span>
+    <div class="w-[1px] h-8 bg-white/30 relative overflow-hidden">
+      <div class="absolute top-0 w-full h-full bg-white animate-[scrollDown_1.5s_ease-in-out_infinite]"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scrollDown {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section > div:nth-child(2) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+  }
+</style>
+
+<script>
+  // Parallax effect
+  const parallaxBg = document.getElementById('hero-parallax');
+  if (parallaxBg) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      parallaxBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+    });
+  }
+
+  // Letter-by-letter animation
+  const heading = document.getElementById('hero-heading');
+  if (heading) {
+    const text = heading.textContent || '';
+    heading.innerHTML = '';
+    text.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.transitionDelay = `${i * 0.03}s`;
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      heading.appendChild(span);
+    });
+
+    setTimeout(() => {
+      heading.classList.add('animate');
+    }, 800);
+  }
+
+  // Fade-up elements in hero
+  setTimeout(() => {
+    document.querySelectorAll('.hero-section .fade-up').forEach((el) => {
+      el.classList.add('visible');
+    });
+  }, 1200);
+</script>

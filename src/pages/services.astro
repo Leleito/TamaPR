@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MagneticButton from '../components/MagneticButton.astro';
+
+const audiences = [
+  {
+    id: 'individuals',
+    title: 'For Individuals & Leaders',
+    intro: 'You are your brand. Your voice is your currency. Whether you\'re a founder, executive, or creative, how you communicate shapes how you\'re remembered.',
+    services: [
+      { name: 'Personal Brand Strategy & Voice Discovery', desc: 'We uncover the authentic core of who you are — and translate it into messaging that feels unmistakably you.', pillar: 'Pillar 1' },
+      { name: 'Executive Communication Coaching', desc: 'One-on-one sessions to sharpen your speaking, writing, and presence — internally and externally.', pillar: 'Pillar 2' },
+      { name: 'Thought Leadership Content Strategy', desc: 'From LinkedIn posts to speaking engagements, we build a content ecosystem that positions you as a trusted voice.', pillar: 'Pillar 1 & 2' },
+      { name: 'Public Speaking & Presentation Storytelling', desc: 'Craft speeches and presentations that don\'t just inform — they move people.', pillar: 'Pillar 2 & 5' },
+    ],
+  },
+  {
+    id: 'organizations',
+    title: 'For Organizations & Brands',
+    intro: 'Your organization has a story. But more importantly, it has people — teams, communities, stakeholders — who need to hear it clearly and believe it deeply.',
+    services: [
+      { name: 'Strategic Narrative Development', desc: 'Articulate your core story — the one that aligns your team, attracts your audience, and guides every communication choice.', pillar: 'Pillar 1 & 4' },
+      { name: 'Ethical Storytelling & Advocacy Communications', desc: 'For organizations handling sensitive narratives — ensuring every story is told with dignity, context, and consent.', pillar: 'Pillar 3' },
+      { name: 'Internal Communication & Organizational Alignment', desc: 'Before the world hears your story, your team must live it. We break silos and build internal messaging.', pillar: 'Pillar 4' },
+      { name: 'Corporate Messaging & Sustainability Reporting', desc: 'Sustainability narratives that reflect real practice — not greenwashing — and corporate communications that build trust.', pillar: 'Pillar 4' },
+      { name: 'Media Relations & Impact Story Placement', desc: 'When your story is ready, we help place it with journalists and platforms that align with your mission.', pillar: 'Pillar 3 & 4' },
+      { name: 'Crisis Preparedness & Communication', desc: 'Internal protocols and team alignment that determine whether a crisis fractures or strengthens trust.', pillar: 'Pillar 4' },
+    ],
+  },
+  {
+    id: 'hospitality',
+    title: 'For Hospitality Brands',
+    intro: 'Hospitality is story told through experience. Every touchpoint — from front desk to housekeeping — shapes what guests remember.',
+    services: [
+      { name: 'Guest Experience & Staff Storytelling Training', desc: 'Turn your team from service providers into confident culture-bearers who reflect your brand\'s culture and community.', pillar: 'Pillar 5 & 2' },
+      { name: 'Interdepartmental Communication Frameworks', desc: 'When departments don\'t talk, the guest feels it. We build systems that align around one seamless guest journey.', pillar: 'Pillar 4' },
+      { name: 'Cultural Narrative Strategy', desc: 'Weave local culture, community, and place into your brand story — so guests don\'t just visit, they connect.', pillar: 'Pillar 5' },
+      { name: 'Brand Voice & Messaging for Hospitality', desc: 'From website copy to guest communications, we ensure your brand voice is consistent, warm, and yours.', pillar: 'Pillar 1 & 5' },
+    ],
+  },
+  {
+    id: 'nonprofits',
+    title: 'For Non-Profits & Social Enterprises',
+    intro: 'Your work changes lives. Your communication should honour that.',
+    services: [
+      { name: 'Impact Story Documentation', desc: 'Capture and share your impact in ways that serve both advocacy and fundraising — without extracting from communities.', pillar: 'Pillar 3' },
+      { name: 'Ethical Storytelling Protocols', desc: 'Frameworks that ensure every community story is told with consent, dignity, and care.', pillar: 'Pillar 3' },
+      { name: 'Communications Training for Teams', desc: 'Equip your team to tell your story powerfully and consistently — internally and externally.', pillar: 'Pillar 2' },
+      { name: 'Donor & Partner Communications', desc: 'Craft narratives that build trust with funders — not through performance, but honest storytelling.', pillar: 'Pillar 3 & 4' },
+    ],
+  },
+];
+
+const pricing = [
+  { type: 'Storytelling Audit', desc: '1-hour deep dive + 3-page report', price: 'KES 15,000' },
+  { type: 'Team Workshop', desc: 'Half-day, on-site or virtual', price: 'KES 45,000' },
+  { type: 'Project-Based Retainer', desc: 'Ongoing strategic counsel', price: 'KES 80,000/mo' },
+  { type: 'Custom Engagements', desc: 'Tailored to scope', price: 'Let\'s talk' },
+];
+---
+
+<BaseLayout title="Services" description="Strategic communications for purpose-driven individuals, leaders, and organizations.">
+
+  <section class="pt-32 pb-16 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Services</p>
+      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
+        Strategic communications for purpose-driven voices.
+      </h1>
+    </div>
+  </section>
+
+  {audiences.map((audience, idx) => (
+    <section class={`py-20 ${idx % 2 === 0 ? 'bg-warm-white' : 'bg-off-white'}`} id={audience.id}>
+      <div class="max-w-[1200px] mx-auto px-16">
+        <div class="mb-12 reveal">
+          <h2 class="font-serif text-[30px] text-navy mb-4">{audience.title}</h2>
+          <p class="text-[16px] text-text-muted max-w-[600px]">{audience.intro}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {audience.services.map((svc, i) => (
+            <div class={`group relative bg-warm-white border border-navy/[0.06] rounded-xl p-7 transition-all duration-500 hover:shadow-md hover:-translate-y-0.5 reveal reveal-delay-${Math.min(i + 1, 5)}`}>
+              <div class="absolute left-0 top-7 bottom-7 w-[3px] bg-terracotta/0 rounded-full transition-all duration-500 group-hover:bg-terracotta"></div>
+              <h3 class="font-serif text-[18px] text-navy mb-2 pl-4">{svc.name}</h3>
+              <p class="text-[14px] leading-relaxed text-text-muted pl-4 mb-2">{svc.desc}</p>
+              <p class="text-[11px] text-text-soft pl-4">Rooted in {svc.pillar}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Investment -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-[800px] mx-auto px-16">
+      <div class="text-center mb-12 reveal">
+        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Investment</p>
+        <h2 class="font-serif text-[32px] text-navy">Every engagement is custom-built.</h2>
+        <p class="text-[15px] text-text-muted mt-3">Here's a sense of where conversations start:</p>
+      </div>
+      <div class="space-y-4 reveal">
+        {pricing.map((item) => (
+          <div class="flex justify-between items-center p-5 bg-warm-white rounded-lg border border-navy/[0.06]">
+            <div>
+              <h4 class="font-serif text-[16px] text-navy">{item.type}</h4>
+              <p class="text-[13px] text-text-soft">{item.desc}</p>
+            </div>
+            <span class="font-serif text-[16px] text-terracotta whitespace-nowrap ml-4">{item.price}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-[13px] text-text-soft text-center mt-6">
+        Exact pricing provided after our discovery conversation, based on your needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-navy text-center">
+    <div class="max-w-[600px] mx-auto px-16 reveal">
+      <h2 class="font-serif text-[32px] text-white mb-4">Ready to tell your story?</h2>
+      <p class="text-[16px] text-white/40 mb-8">The first step is a conversation. No pressure. Just listening.</p>
+      <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

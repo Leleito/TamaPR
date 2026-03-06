@@ -1,0 +1,47 @@
+---
+const stats = [
+  { value: '10+', label: 'Years in Communications' },
+  { value: '5', label: 'Core Pillars' },
+  { value: '100%', label: 'Ethical Commitment' },
+];
+---
+
+<section class="bg-cream py-24">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-16 items-center">
+      <div class="reveal">
+        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+          Who We Are
+        </p>
+        <h2 class="font-serif text-[36px] lg:text-[42px] leading-[1.15] text-navy mb-6">
+          Communication that carries responsibility, not just reach.
+        </h2>
+        <p class="text-[16px] leading-relaxed text-text-muted max-w-[520px]">
+          Tama PR is built on connection — not just messaging. We operate at the intersection of clarity, empathy, and advocacy — prioritizing understanding before visibility, and intention before performance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 reveal reveal-delay-2">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <span class="block font-serif text-[36px] text-navy counter-value" data-target={stat.value}>
+              {stat.value}
+            </span>
+            <span class="block text-[12px] text-text-soft mt-1 leading-tight">
+              {stat.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import logoTree from '../assets/images/logo-tree.jpg';
+---
+
+<div class="page-loader" id="page-loader">
+  <img src={logoTree.src} alt="" class="loader-icon" />
+  <div class="loader-bar-track">
+    <div class="loader-bar-fill"></div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('page-loader');
+      if (loader) {
+        loader.classList.add('loaded');
+      }
+    }, 1600);
+  });
+</script>

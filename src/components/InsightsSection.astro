@@ -1,0 +1,81 @@
+---
+import InsightCard from './InsightCard.astro';
+
+const featured = {
+  title: 'Introducing Tama PR: The Power of Honest Communication',
+  excerpt: 'Why I started this journey — and what honest PR really means. PR, to me, isn\'t a job title or a project. It\'s part of who I am.',
+  category: 'Ethical Communication',
+  categoryClass: 'cat-ethical',
+  href: '/insights',
+};
+
+const sidebar = [
+  {
+    title: 'Truth & Waves: When Honesty Makes Change',
+    excerpt: 'Reflections on why the truth doesn\'t always make friends — but always makes waves.',
+    category: 'Advocacy',
+    categoryClass: 'cat-ethical',
+    href: '/insights',
+  },
+  {
+    title: 'Mobility & Meaning: The Ride-Hail Reality',
+    excerpt: 'Behind the convenience, there are stories of dignity, livelihood, and economic justice.',
+    category: 'Community',
+    categoryClass: 'cat-community',
+    href: '/insights',
+  },
+];
+---
+
+<section class="py-24 bg-warm-white">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+        Insights
+      </p>
+      <h2 class="font-serif text-[36px] lg:text-[42px] text-navy leading-tight">
+        Where thought meets heart.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8">
+      <div class="reveal">
+        <InsightCard
+          title={featured.title}
+          excerpt={featured.excerpt}
+          category={featured.category}
+          categoryClass={featured.categoryClass}
+          href={featured.href}
+          featured
+        />
+      </div>
+      <div class="reveal reveal-delay-2">
+        <h4 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Latest</h4>
+        {sidebar.map((post) => (
+          <InsightCard
+            title={post.title}
+            excerpt={post.excerpt}
+            category={post.category}
+            categoryClass={post.categoryClass}
+            href={post.href}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="/insights" class="inline-block text-[14px] font-medium text-terracotta border-b border-terracotta/30 pb-0.5 no-underline hover:border-terracotta transition-colors duration-300">
+        View All Insights &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import ProcessStep from './ProcessStep.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Listen',
+    description: 'We begin with conversation — not assumptions. I ask questions, listen to what\'s said and unsaid, and understand the values that shape your work.',
+    timeframe: '1-2 conversations',
+  },
+  {
+    number: '02',
+    title: 'Strategize',
+    description: 'Based on what I\'ve heard, I present a tailored proposal: objectives, approach, timeline, and investment. No templates. No pressure.',
+    timeframe: '1 week after listening',
+  },
+  {
+    number: '03',
+    title: 'Collaborate',
+    description: 'We work side by side. Whether it\'s training your team, crafting narratives, or building systems — I\'m in it with you.',
+    timeframe: 'Varies by scope',
+  },
+  {
+    number: '04',
+    title: 'Reflect',
+    description: 'We review what worked, what shifted, and what lasting value was created. Communication isn\'t a one-time fix — it\'s an ongoing practice.',
+    timeframe: 'Built into every engagement',
+  },
+];
+---
+
+<section class="py-24 bg-warm-white">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+        How We Work
+      </p>
+      <h2 class="font-serif text-[36px] lg:text-[42px] text-navy leading-tight">
+        Not transactions.<br />Partnerships.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step, i) => (
+        <ProcessStep
+          number={step.number}
+          title={step.title}
+          description={step.description}
+          timeframe={step.timeframe}
+          delay={i + 1}
+        />
+      ))}
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="/process" class="inline-block text-[14px] font-medium text-terracotta border-b border-terracotta/30 pb-0.5 no-underline hover:border-terracotta transition-colors duration-300">
+        Learn More About Our Process &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

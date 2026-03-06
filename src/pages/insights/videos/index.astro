@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import VideoCard from '../../../components/VideoCard.astro';
+import MagneticButton from '../../../components/MagneticButton.astro';
+---
+
+<BaseLayout title="The Unsaid | Video Series" description="A conversation series exploring stories that rarely get told — with the care they deserve.">
+
+  <section class="pt-32 pb-16 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Video Series</p>
+      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
+        The Unsaid
+      </h1>
+      <p class="text-[16px] text-text-muted mt-4 max-w-[600px] reveal">
+        A conversation series where we sit with survivors, advocates, and experts to explore
+        the stories that rarely get told — with the care they deserve.
+      </p>
+    </div>
+  </section>
+
+  <!-- Series Introduction -->
+  <section class="py-16 bg-cream">
+    <div class="max-w-[800px] mx-auto px-16">
+      <div class="reveal">
+        <h2 class="font-serif text-[24px] text-navy mb-4">About the Series</h2>
+        <p class="text-[16px] leading-[1.8] text-text-muted mb-4">
+          Some stories go unspoken — not because they don't matter, but because telling them requires
+          a kind of care that most media refuses to offer. <em>The Unsaid</em> exists in that gap.
+        </p>
+        <p class="text-[16px] leading-[1.8] text-text-muted">
+          Each episode is a conversation — not an interview. We sit with people whose lived experiences
+          carry weight: survivors, advocates, community leaders, and quiet changemakers. We listen before
+          we speak. We hold space before we shape narrative.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Episodes -->
+  <section class="py-16 bg-warm-white">
+    <div class="max-w-[1200px] mx-auto px-16">
+      <h2 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-8 reveal">Episodes</h2>
+
+      <!-- Coming Soon Placeholder -->
+      <div class="reveal">
+        <div class="bg-off-white border border-navy/[0.06] rounded-xl p-16 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-navy/5 flex items-center justify-center">
+            <svg class="w-8 h-8 text-navy/30" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <h3 class="font-serif text-[24px] text-navy mb-3">Coming Soon</h3>
+          <p class="text-[15px] text-text-muted max-w-[450px] mx-auto mb-2">
+            The first episode of <em>The Unsaid</em> is currently in production.
+          </p>
+          <p class="text-[13px] text-text-soft italic">
+            Stories of pain, courage, and survival — told with dignity, not extraction.
+          </p>
+        </div>
+      </div>
+
+      <!-- Future episodes will use VideoCard components like this:
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <VideoCard
+          title="Episode Title"
+          description="Episode description"
+          series="The Unsaid"
+          duration="12:34"
+          href="/insights/videos/episode-slug"
+        />
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-cream">
+    <div class="max-w-[500px] mx-auto px-16 text-center reveal">
+      <h2 class="font-serif text-[24px] text-navy mb-3">Be the First to Watch</h2>
+      <p class="text-[14px] text-text-muted mb-6">Subscribe to be notified when new episodes drop.</p>
+      <form id="video-newsletter" class="flex gap-3">
+        <input type="email" placeholder="Your email" required class="flex-1 px-4 py-3 rounded-lg border border-navy/[0.08] bg-warm-white text-[14px] focus:outline-none focus:border-terracotta/40" />
+        <button type="submit" class="px-5 py-3 bg-terracotta text-white text-[14px] font-medium rounded-lg hover:bg-terracotta-hover transition-colors">Notify Me</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-navy text-center">
+    <div class="max-w-[600px] mx-auto px-16 reveal">
+      <h2 class="font-serif text-[28px] text-white mb-4">Have a Story That Needs Telling?</h2>
+      <p class="text-[15px] text-white/40 mb-8">If you carry a story that deserves care — not extraction — we'd love to listen.</p>
+      <MagneticButton href="/contact" variant="primary">Get in Touch</MagneticButton>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    form {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('video-newsletter') as HTMLFormElement;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+    if (!email) return;
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        form.innerHTML = '<p class="text-olive font-medium py-3">You\'re on the list. We\'ll be in touch.</p>';
+      }
+    } catch (err) {
+      console.error('Newsletter signup error:', err);
+    }
+  });
+</script>

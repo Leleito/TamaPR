@@ -1,0 +1,85 @@
+---
+import ServiceCard from './ServiceCard.astro';
+
+const serviceGroups = [
+  {
+    title: 'For Individuals & Leaders',
+    subtitle: 'Your voice is your currency.',
+    services: [
+      'Personal Brand Strategy & Voice Discovery',
+      'Executive Communication Coaching',
+      'Thought Leadership Content Strategy',
+      'Public Speaking & Presentation Storytelling',
+    ],
+  },
+  {
+    title: 'For Organizations & Brands',
+    subtitle: 'Your story starts from within.',
+    services: [
+      'Strategic Narrative Development',
+      'Ethical Storytelling & Advocacy',
+      'Internal Communication & Alignment',
+      'Crisis Preparedness & Communication',
+    ],
+  },
+  {
+    title: 'For Hospitality Brands',
+    subtitle: 'Hospitality is story told through experience.',
+    services: [
+      'Guest Experience & Staff Storytelling Training',
+      'Interdepartmental Communication Frameworks',
+      'Cultural Narrative Strategy',
+      'Brand Voice & Messaging',
+    ],
+  },
+  {
+    title: 'For Non-Profits & Social Enterprises',
+    subtitle: 'Your work changes lives. Honour that.',
+    services: [
+      'Impact Story Documentation',
+      'Ethical Storytelling Protocols',
+      'Communications Training for Teams',
+      'Donor & Partner Communications',
+    ],
+  },
+];
+---
+
+<section class="py-24 bg-off-white">
+  <div class="max-w-[1200px] mx-auto px-16">
+    <div class="text-center mb-16 reveal">
+      <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">
+        Services
+      </p>
+      <h2 class="font-serif text-[36px] lg:text-[42px] text-navy leading-tight">
+        Strategic communications for<br />purpose-driven voices.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {serviceGroups.map((group, i) => (
+        <ServiceCard
+          title={group.title}
+          subtitle={group.subtitle}
+          services={group.services}
+          delay={i + 1}
+        />
+      ))}
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="/services" class="inline-block text-[14px] font-medium text-terracotta border-b border-terracotta/30 pb-0.5 no-underline hover:border-terracotta transition-colors duration-300">
+        View All Services &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    section > div {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+</style>

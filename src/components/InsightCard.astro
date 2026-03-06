@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  category: string;
+  categoryClass?: string;
+  href?: string;
+  featured?: boolean;
+}
+
+const { title, excerpt, category, categoryClass = 'cat-ethical', href = '#', featured = false } = Astro.props;
+---
+
+{featured ? (
+  <a href={href} class="group block bg-warm-white border border-navy/[0.06] rounded-xl p-8 no-underline transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+    <span class={`inline-block text-[11px] font-semibold tracking-[1px] uppercase px-3 py-1 rounded-full mb-5 ${categoryClass}`}>
+      {category}
+    </span>
+    <h3 class="font-serif text-[26px] text-navy leading-snug mb-4 group-hover:text-terracotta transition-colors duration-300">
+      {title}
+    </h3>
+    <p class="text-[14.5px] leading-relaxed text-text-muted mb-6">
+      {excerpt}
+    </p>
+    <span class="text-[13px] font-medium text-terracotta">
+      Read More &rarr;
+    </span>
+  </a>
+) : (
+  <a href={href} class="group block py-5 border-b border-navy/[0.04] no-underline transition-colors duration-300">
+    <span class={`inline-block text-[10px] font-semibold tracking-[1px] uppercase px-2.5 py-0.5 rounded-full mb-2.5 ${categoryClass}`}>
+      {category}
+    </span>
+    <h4 class="font-serif text-[17px] text-navy leading-snug group-hover:text-terracotta transition-colors duration-300">
+      {title}
+    </h4>
+    <p class="text-[13px] text-text-soft mt-1.5 line-clamp-2">
+      {excerpt}
+    </p>
+  </a>
+)}

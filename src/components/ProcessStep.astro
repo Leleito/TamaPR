@@ -1,0 +1,26 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  timeframe: string;
+  delay?: number;
+}
+
+const { number, title, description, timeframe, delay = 0 } = Astro.props;
+---
+
+<div class={`process-step group bg-off-white border border-navy/[0.06] rounded-xl p-8 cursor-default transition-all duration-500 hover:bg-navy hover:border-navy hover:shadow-lg reveal reveal-delay-${delay}`}>
+  <span class="block text-[11px] font-semibold tracking-[2px] text-terracotta/60 mb-4 transition-colors duration-500 group-hover:text-amber/60">
+    {number}
+  </span>
+  <h3 class="font-serif text-[22px] text-navy mb-3 transition-colors duration-500 group-hover:text-white">
+    {title}
+  </h3>
+  <p class="text-[14px] leading-relaxed text-text-muted mb-4 transition-colors duration-500 group-hover:text-white/50">
+    {description}
+  </p>
+  <span class="text-[12px] text-text-soft transition-colors duration-500 group-hover:text-white/30">
+    {timeframe}
+  </span>
+</div>

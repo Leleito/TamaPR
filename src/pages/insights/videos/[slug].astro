@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MagneticButton from '../../../components/MagneticButton.astro';
+import { client } from '../../../lib/sanity';
+
+export async function getStaticPaths() {
+  let videos: any[] = [];
+  try {
+    videos = await client.fetch(`*[_type == "video"]{ "slug": slug.current, title, description, videoUrl, duration, series, publishedAt, transcript }`);
+  } catch (e) {
+    // Sanity not available
+  }
+
+  if (videos.length > 0) {
+    return videos.map((video) => ({
+      params: { slug: video.slug },
+      props: { video },
+    }));
+  }
+
+  // Placeholder — no episodes published yet
+  return [
+    {
+      params: { slug: 'coming-soon' },
+      props: {
+        video: {
+          title: 'The Unsaid — Coming Soon',
+          description: 'The first episode of The Unsaid is currently in production.',
+          series: 'The Unsaid',
+          videoUrl: null,
+          duration: null,
+          publishedAt: null,
+          transcript: null,
+        },
+      },
+    },
+  ];
+}
+
+const { video } = Astro.props;
+---
+
+<BaseLayout title={`${video.title} | The Unsaid`} description={video.description}>
+
+  <section class="pt-32 pb-8 bg-warm-white">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-16">
+      <div class="reveal">
+        <a href="/insights/videos" class="inline-flex items-center gap-2 text-[13px] text-terracotta font-medium mb-6 hover:gap-3 transition-all duration-300">
+          <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Back to The Unsaid
+        </a>
+        {video.series && (
+          <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-4">{video.series}</p>
+        )}
+        <h1 class="font-serif text-[36px] lg:text-[44px] text-navy leading-[1.15] mb-4">{video.title}</h1>
+        <p class="text-[16px] text-text-muted mb-8">{video.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Player -->
+  <section class="pb-16 bg-warm-white">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-16">
+      <div class="reveal">
+        {video.videoUrl ? (
+          <div class="aspect-video rounded-xl overflow-hidden bg-navy/5">
+            <iframe
+              src={video.videoUrl}
+              class="w-full h-full"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        ) : (
+          <div class="aspect-video rounded-xl bg-gradient-to-br from-navy/10 to-terracotta/10 flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-white/60 flex items-center justify-center">
+                <svg class="w-8 h-8 text-navy/30" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <p class="font-serif text-[18px] text-navy/40">Coming Soon</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Transcript -->
+  {video.transcript && (
+    <section class="py-16 bg-off-white">
+      <div class="max-w-[800px] mx-auto px-6 lg:px-16">
+        <div class="reveal">
+          <h2 class="font-serif text-[24px] text-navy mb-6">Transcript</h2>
+          <div class="text-[15px] leading-[1.85] text-text-muted space-y-4">
+            <p>{video.transcript}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-16 bg-navy text-center">
+    <div class="max-w-[600px] mx-auto px-6 lg:px-16 reveal">
+      <h2 class="font-serif text-[28px] text-white mb-4">Let's Talk</h2>
+      <p class="text-[15px] text-white/40 mb-8">If something here resonates — or you have a story that needs telling — we'd love to hear from you.</p>
+      <MagneticButton href="/contact" variant="primary">Get in Touch</MagneticButton>
+    </div>
+  </section>
+
+</BaseLayout>
