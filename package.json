@@ -6,7 +6,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run --reporter=verbose",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/sanity.test.ts tests/api-contact.test.ts tests/api-newsletter.test.ts",
+    "test:build": "vitest run tests/build.test.ts",
+    "test:docker": "docker compose -f docker-compose.test.yml up --build --abort-on-container-exit test",
+    "test:docker:unit": "docker compose -f docker-compose.test.yml up --build --abort-on-container-exit test-unit",
+    "test:docker:build": "docker compose -f docker-compose.test.yml up --build --abort-on-container-exit test-build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
@@ -18,5 +25,10 @@
     "groq": "^5.13.0",
     "resend": "^6.9.3",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "happy-dom": "^20.8.3",
+    "vitest": "^4.0.18"
   }
 }

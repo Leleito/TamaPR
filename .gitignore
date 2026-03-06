@@ -31,3 +31,5 @@ pnpm-debug.log*
 # Sanity studio
 sanity/node_modules/
 sanity/dist/
+
+.vercel

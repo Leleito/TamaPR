@@ -1,0 +1,38 @@
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - SANITY_PROJECT_ID=cjtepxlw
+      - SANITY_DATASET=production
+      - SANITY_API_VERSION=2026-03-01
+      - SANITY_API_TOKEN=
+      - PUBLIC_SITE_URL=https://tamapr.com
+      - RESEND_API_KEY=
+    volumes:
+      - test-results:/app/test-results
+
+  test-unit:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    command: ["npx", "vitest", "run", "--reporter=verbose", "tests/sanity.test.ts", "tests/api-contact.test.ts", "tests/api-newsletter.test.ts"]
+    environment:
+      - SANITY_PROJECT_ID=cjtepxlw
+      - SANITY_DATASET=production
+      - SANITY_API_VERSION=2026-03-01
+
+  test-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    command: ["npx", "vitest", "run", "--reporter=verbose", "tests/build.test.ts"]
+    environment:
+      - SANITY_PROJECT_ID=cjtepxlw
+      - SANITY_DATASET=production
+      - SANITY_API_VERSION=2026-03-01
+      - PUBLIC_SITE_URL=https://tamapr.com
+
+volumes:
+  test-results:
