@@ -3,21 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import tamaPortrait from '../assets/images/tama-portrait.jpg';
 import MagneticButton from '../components/MagneticButton.astro';
 
-const philosophy = [
-  {
-    title: 'Honesty Over Noise',
-    description: 'Advocacy begins with honesty. Communication begins with courage. The truth doesn\'t always make friends — sometimes it makes waves.',
-  },
-  {
-    title: 'Sustainability with Substance',
-    description: 'Sustainability isn\'t a headline — it\'s a mindset. We tell stories that align purpose with practice, building trust that lasts longer than campaigns.',
-  },
-  {
-    title: 'Stories that Serve',
-    description: 'Real PR connects meaningfully. Every message we craft considers people, communities, and long-term impact — not just visibility or metrics.',
-  },
-];
-
 const pillars = [
   { number: '01', title: 'Personal Branding & Voice', tagline: 'The foundation where all communication begins.' },
   { number: '02', title: 'Communication & PR Education', tagline: 'Empowering through knowledge.' },
@@ -29,115 +14,43 @@ const pillars = [
 
 <BaseLayout title="About" description="Learn about Tama PR — ethical PR & Communications consultancy rooted in authenticity, advocacy, and intentional storytelling.">
 
-  <!-- Page Header -->
+  <!-- Hero -->
   <section class="pt-32 pb-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">About</p>
-      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
-        Where powerful communication begins with truth.
+      <h1 class="font-serif text-[36px] md:text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
+        Communication rooted in truth.
       </h1>
-    </div>
-  </section>
-
-  <!-- Who We Are -->
-  <section class="py-20 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div class="reveal">
-          <h2 class="font-serif text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-6">Who We Are</h2>
-          <p class="text-[16px] leading-[1.8] text-text-muted mb-6">
-            Tama PR is built on connection — not just messaging. We believe communication carries responsibility, not just reach.
-          </p>
-          <p class="text-[16px] leading-[1.8] text-text-muted mb-6">
-            We operate at the intersection of clarity, empathy, and advocacy — prioritizing understanding before visibility, and intention before performance. Every engagement begins by listening: to the people behind the brand, the values they carry, and the real-world impact their voice creates.
-          </p>
-          <p class="text-[16px] leading-[1.8] text-text-muted">
-            This is not transactional PR. It is thoughtful, ethical communication designed to build trust, protect narratives, and strengthen relationships — especially where communities, livelihoods, or sensitive stories are involved.
-          </p>
-        </div>
-        <div class="reveal reveal-delay-2">
-          <div class="bg-cream rounded-xl p-10">
-            <p class="font-serif text-[20px] italic text-navy leading-relaxed mb-6">
-              "Authenticity guides the work.<br />
-              Advocacy shapes the approach.<br />
-              Truth remains the goal."
-            </p>
-            <span class="text-[13px] text-terracotta font-medium">— Tama PR</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The Story -->
-  <section class="py-20 bg-cream">
-    <div class="max-w-[800px] mx-auto px-16">
-      <div class="reveal">
-        <h2 class="font-serif text-[32px] text-navy mb-8">The Story Behind Tama PR</h2>
-        <div class="space-y-6 text-[16px] leading-[1.8] text-text-muted">
-          <p>I've always been drawn to how people speak — and what they leave unsaid.</p>
-          <p>Long before PR became a profession for me, storytelling was how I made sense of the world. I listened closely. I noticed tone, pauses, intention. I paid attention to how words could soften a moment, or harden it.</p>
-          <p>Over time, what disturbed me wasn't the lack of storytelling, but the lack of responsibility around it. Visibility was often prioritized over dignity. Performance over truth. People were reduced to talking points, communities to campaigns, and lived experiences to content.</p>
-          <p>At some point, I realized I didn't want to just participate in communication as it was. I wanted to work differently. Slower. More intentionally. With curiosity instead of extraction. With listening before speaking.</p>
-          <p>Tama PR grew from that decision.</p>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- Meet Tama -->
   <section class="py-20 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
-      <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-16 items-start">
-        <div class="reveal">
-          <img
-            src={tamaPortrait.src}
-            alt="Tama Munira Wazome"
-            class="w-[280px] h-[280px] rounded-2xl object-cover"
-          />
-        </div>
-        <div class="reveal reveal-delay-1">
-          <p class="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta mb-3">Meet Tama</p>
-          <h2 class="font-serif text-[32px] text-navy mb-2">Tama Munira Wazome</h2>
-          <p class="text-[14px] text-text-soft mb-6">Founder & Communications Lead, Tama PR</p>
-          <p class="text-[16px] leading-[1.8] text-text-muted mb-6">
-            A communications strategist, advocate, and storyteller committed to ethical, purpose-driven public relations. With a deep understanding of cultural narratives, media dynamics, and human-centered communication, Tama has built a practice rooted in listening, integrity, and intentional advocacy.
-          </p>
-          <div class="bg-cream rounded-lg p-6 border-l-3 border-terracotta">
-            <p class="text-[14px] italic text-navy leading-relaxed mb-2">A Note From Tama:</p>
-            <p class="text-[14px] leading-relaxed text-text-muted">
-              This work is my response to a question I carried for years: What if communication could be different? Slower. More honest. Rooted in responsibility rather than reach. If that resonates with you, I'd love to listen.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy -->
-  <section class="py-20 bg-off-white">
-    <div class="max-w-[1200px] mx-auto px-16">
-      <div class="text-center mb-14 reveal">
-        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Our Philosophy</p>
-        <h2 class="font-serif text-[32px] text-navy">PR should be as real as the people it represents.</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {philosophy.map((item, i) => (
-          <div class={`bg-warm-white border border-navy/[0.06] rounded-xl p-8 reveal reveal-delay-${i + 1}`}>
-            <h3 class="font-serif text-[20px] text-navy mb-3">{item.title}</h3>
-            <p class="text-[14px] leading-relaxed text-text-muted">{item.description}</p>
-          </div>
-        ))}
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
+      <div class="flex flex-col items-center text-center max-w-[600px] mx-auto reveal">
+        <img
+          src={tamaPortrait.src}
+          alt="Tama Munira Wazome"
+          class="w-[180px] h-[180px] rounded-full object-cover object-top mb-8"
+        />
+        <h2 class="font-serif text-[28px] text-navy mb-1">Tama Munira Wazome</h2>
+        <p class="text-[14px] text-terracotta font-medium mb-6">Founder & Communications Lead</p>
+        <p class="text-[16px] leading-[1.8] text-text-muted mb-8">
+          Tama PR operates at the intersection of clarity, empathy, and advocacy. Every engagement begins by listening — to the people, the values they carry, and the impact their voice creates.
+        </p>
+        <blockquote class="font-serif text-[18px] italic text-navy/70 leading-relaxed">
+          "What if communication could be different?<br />Slower. More honest. Rooted in responsibility."
+        </blockquote>
       </div>
     </div>
   </section>
 
   <!-- Five Pillars -->
   <section class="py-20 bg-navy">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="text-center mb-14 reveal">
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-amber/50 mb-5">Our Lenses</p>
-        <h2 class="font-serif text-[32px] text-white">Five pillars that guide every conversation.</h2>
+        <h2 class="font-serif text-[28px] md:text-[32px] text-white">Five pillars that guide every conversation.</h2>
       </div>
       <div class="space-y-4">
         {pillars.map((p, i) => (
@@ -155,20 +68,11 @@ const pillars = [
 
   <!-- CTA -->
   <section class="py-20 bg-cream text-center">
-    <div class="max-w-[600px] mx-auto px-16 reveal">
-      <h2 class="font-serif text-[32px] text-navy mb-4">Ready to begin?</h2>
-      <p class="text-[16px] text-text-muted mb-8">The first step is a conversation. No pressure. Just listening.</p>
+    <div class="max-w-[600px] mx-auto px-6 md:px-16 reveal">
+      <h2 class="font-serif text-[28px] md:text-[32px] text-navy mb-4">Ready to begin?</h2>
+      <p class="text-[16px] text-text-muted mb-8">No pressure. No pitch. Just listening.</p>
       <MagneticButton href="/contact" variant="primary">Start Your Story</MagneticButton>
     </div>
   </section>
 
 </BaseLayout>
-
-<style>
-  @media (max-width: 768px) {
-    section > div {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-</style>
