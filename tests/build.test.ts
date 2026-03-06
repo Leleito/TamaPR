@@ -52,8 +52,7 @@ describe('Static Pages Generation', () => {
     'projects/afri-educare-alliance/index.html',
     'insights/index.html',
     'insights/introducing-tama-pr/index.html',
-    'insights/truth-and-waves/index.html',
-    'insights/mobility-and-meaning/index.html',
+    'insights/introducing-tama-pr/index.html',
     'insights/videos/index.html',
     'insights/videos/coming-soon/index.html',
   ];

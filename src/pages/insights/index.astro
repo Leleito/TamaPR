@@ -2,47 +2,46 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import MagneticButton from '../../components/MagneticButton.astro';
+import { client } from '../../lib/sanity';
 
-const featured = {
-  title: 'Introducing Tama PR: The Power of Honest Communication',
-  excerpt: 'Why I started this journey — and what honest PR really means. PR, to me, isn\'t a job title or a project. It\'s part of who I am. This is my declaration — not my beginning.',
-  category: 'Ethical Communication',
-  categoryClass: 'cat-ethical',
-  href: '/insights',
-};
+// Fetch featured post
+const featuredPosts = await client.fetch(
+  `*[_type == "post" && featured == true] | order(publishedAt desc)[0...1] {
+    title,
+    "slug": slug.current,
+    excerpt,
+    "category": pillar->title,
+    "categoryClass": pillar->categoryClass
+  }`
+);
+const featured = featuredPosts[0] || null;
 
-const posts = [
-  {
-    title: 'Truth & Waves: When Honesty Makes Change',
-    excerpt: 'Reflections on why the truth doesn\'t always make friends — but always makes waves.',
-    category: 'Advocacy',
-    categoryClass: 'cat-ethical',
-    href: '/insights',
-  },
-  {
-    title: 'Mobility & Meaning: The Ride-Hail Reality',
-    excerpt: 'Behind the convenience, there are stories of dignity, livelihood, and economic justice.',
-    category: 'Community',
-    categoryClass: 'cat-community',
-    href: '/insights',
-  },
-];
+// Fetch latest posts (exclude featured)
+const latestPosts = await client.fetch(
+  `*[_type == "post" && featured != true] | order(publishedAt desc)[0...4] {
+    title,
+    "slug": slug.current,
+    excerpt,
+    "category": pillar->title,
+    "categoryClass": pillar->categoryClass
+  }`
+);
 
-const pillars = [
-  { label: 'Personal Branding & Voice', class: 'cat-lifestyle' },
-  { label: 'Communication & PR Education', class: 'cat-corporate' },
-  { label: 'Advocacy & Ethical Storytelling', class: 'cat-ethical' },
-  { label: 'Corporate & Professional Communication', class: 'cat-community' },
-  { label: 'Lifestyle, Culture & Human Connection', class: 'cat-hospitality' },
-];
+// Fetch pillars for filter buttons
+const pillars = await client.fetch(
+  `*[_type == "pillar"] | order(number asc) {
+    title,
+    categoryClass
+  }`
+);
 ---
 
 <BaseLayout title="Insights" description="Stories, reflections, and perspectives — grounded in authenticity, advocacy, and purpose.">
 
   <section class="pt-32 pb-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Insights</p>
-      <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[600px] reveal">
+      <h1 class="font-serif text-[36px] md:text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[600px] reveal">
         Where thought meets heart.
       </h1>
       <p class="text-[16px] text-text-muted mt-4 max-w-[560px] reveal">
@@ -52,46 +51,52 @@ const pillars = [
   </section>
 
   <!-- Featured + Latest -->
-  <section class="py-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
-      <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8">
-        <div class="reveal">
-          <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Featured</h3>
-          <InsightCard
-            title={featured.title}
-            excerpt={featured.excerpt}
-            category={featured.category}
-            categoryClass={featured.categoryClass}
-            href={featured.href}
-            featured
-          />
-        </div>
-        <div class="reveal reveal-delay-2">
-          <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Latest</h3>
-          {posts.map((post) => (
-            <InsightCard
-              title={post.title}
-              excerpt={post.excerpt}
-              category={post.category}
-              categoryClass={post.categoryClass}
-              href={post.href}
-            />
-          ))}
+  {(featured || latestPosts.length > 0) && (
+    <section class="py-16 bg-warm-white">
+      <div class="max-w-[1200px] mx-auto px-6 md:px-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8">
+          {featured && (
+            <div class="reveal">
+              <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Featured</h3>
+              <InsightCard
+                title={featured.title}
+                excerpt={featured.excerpt}
+                category={featured.category || 'Insight'}
+                categoryClass={featured.categoryClass || 'cat-ethical'}
+                href={`/insights/${featured.slug}`}
+                featured
+              />
+            </div>
+          )}
+          {latestPosts.length > 0 && (
+            <div class="reveal reveal-delay-2">
+              <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Latest</h3>
+              {latestPosts.map((post: any) => (
+                <InsightCard
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  category={post.category || 'Insight'}
+                  categoryClass={post.categoryClass || 'cat-ethical'}
+                  href={`/insights/${post.slug}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- The Unsaid Series -->
   <section class="py-16 bg-cream">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="reveal">
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-4">Video Series</p>
         <h2 class="font-serif text-[30px] text-navy mb-3">The Unsaid</h2>
         <p class="text-[15px] text-text-muted max-w-[560px] mb-8">
           A conversation series where we sit with survivors, advocates, and experts to explore the stories that rarely get told — with the care they deserve.
         </p>
-        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-12 text-center">
+        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-8 md:p-12 text-center">
           <p class="font-serif text-[18px] text-navy/30 mb-2">Latest Episode</p>
           <p class="text-[15px] text-text-soft">Coming Soon</p>
           <p class="text-[13px] text-text-soft mt-2 italic">Stories of pain, courage, and survival — told with dignity, not extraction.</p>
@@ -101,28 +106,30 @@ const pillars = [
   </section>
 
   <!-- Explore by Pillar -->
-  <section class="py-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
-      <div class="text-center mb-8 reveal">
-        <h2 class="font-serif text-[24px] text-navy mb-2">Explore by Pillar</h2>
-        <p class="text-[14px] text-text-muted">Click any pillar to explore related insights.</p>
+  {pillars.length > 0 && (
+    <section class="py-16 bg-warm-white">
+      <div class="max-w-[1200px] mx-auto px-6 md:px-16">
+        <div class="text-center mb-8 reveal">
+          <h2 class="font-serif text-[24px] text-navy mb-2">Explore by Pillar</h2>
+          <p class="text-[14px] text-text-muted">Click any pillar to explore related insights.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 reveal">
+          {pillars.map((p: any) => (
+            <button class={`text-[12px] font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 ${p.categoryClass || 'cat-ethical'}`}>
+              {p.title}
+            </button>
+          ))}
+        </div>
       </div>
-      <div class="flex flex-wrap justify-center gap-3 reveal">
-        {pillars.map((p) => (
-          <button class={`text-[12px] font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 ${p.class}`}>
-            {p.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Newsletter -->
   <section class="py-16 bg-cream">
-    <div class="max-w-[500px] mx-auto px-16 text-center reveal">
+    <div class="max-w-[500px] mx-auto px-6 md:px-16 text-center reveal">
       <h2 class="font-serif text-[24px] text-navy mb-3">Stay Connected</h2>
       <p class="text-[14px] text-text-muted mb-6">No spam. Just honest thoughts on PR, storytelling, and advocacy.</p>
-      <form class="flex gap-3">
+      <form class="flex flex-col md:flex-row gap-3">
         <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-lg border border-navy/[0.08] bg-warm-white text-[14px] focus:outline-none focus:border-terracotta/40" />
         <button type="submit" class="px-5 py-3 bg-terracotta text-white text-[14px] font-medium rounded-lg hover:bg-terracotta-hover transition-colors">Subscribe</button>
       </form>
@@ -131,7 +138,7 @@ const pillars = [
 
   <!-- CTA -->
   <section class="py-16 bg-navy text-center">
-    <div class="max-w-[600px] mx-auto px-16 reveal">
+    <div class="max-w-[600px] mx-auto px-6 md:px-16 reveal">
       <h2 class="font-serif text-[28px] text-white mb-4">Let's Talk</h2>
       <p class="text-[15px] text-white/40 mb-8">If something here resonates — or you have a story that needs telling — I'd love to hear from you.</p>
       <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
@@ -139,16 +146,3 @@ const pillars = [
   </section>
 
 </BaseLayout>
-
-<style>
-  @media (max-width: 768px) {
-    section > div {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    form {
-      flex-direction: column;
-    }
-  }
-</style>

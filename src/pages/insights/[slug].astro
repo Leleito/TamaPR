@@ -1,75 +1,72 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import MagneticButton from '../../components/MagneticButton.astro';
-import { client } from '../../lib/sanity';
+import { client, urlFor } from '../../lib/sanity';
+import { toHTML } from '@portabletext/to-html';
 
 export async function getStaticPaths() {
-  // Try fetching from Sanity, fallback to hardcoded slugs
-  let posts: any[] = [];
-  try {
-    posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current, title, excerpt, "category": pillar->title, publishedAt, body, pullQuote }`);
-  } catch (e) {
-    // Sanity not available, use fallback content
-  }
+  const posts = await client.fetch(
+    `*[_type == "post"] {
+      "slug": slug.current,
+      title,
+      excerpt,
+      "category": pillar->title,
+      "categoryClass": pillar->categoryClass,
+      publishedAt,
+      body,
+      pullQuote,
+      mainImage
+    }`
+  );
 
-  if (posts.length > 0) {
-    return posts.map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
-    }));
-  }
-
-  // Fallback hardcoded posts for static build
-  return [
-    {
-      params: { slug: 'introducing-tama-pr' },
-      props: {
-        post: {
-          title: 'Introducing Tama PR: The Power of Honest Communication',
-          excerpt: 'Why I started this journey — and what honest PR really means.',
-          category: 'Ethical Communication',
-          categoryClass: 'cat-ethical',
-          publishedAt: '2026-03-01',
-          readTime: '6 min',
-          pullQuote: 'PR, to me, isn\'t a job title or a project. It\'s part of who I am.',
-          content: 'hardcoded',
-        },
-      },
-    },
-    {
-      params: { slug: 'truth-and-waves' },
-      props: {
-        post: {
-          title: 'Truth & Waves: When Honesty Makes Change',
-          excerpt: 'Reflections on why the truth doesn\'t always make friends — but always makes waves.',
-          category: 'Advocacy',
-          categoryClass: 'cat-ethical',
-          publishedAt: '2026-02-15',
-          readTime: '5 min',
-          pullQuote: 'The truth doesn\'t always make friends — sometimes it makes waves.',
-          content: 'hardcoded',
-        },
-      },
-    },
-    {
-      params: { slug: 'mobility-and-meaning' },
-      props: {
-        post: {
-          title: 'Mobility & Meaning: The Ride-Hail Reality',
-          excerpt: 'Behind the convenience, there are stories of dignity, livelihood, and economic justice.',
-          category: 'Community',
-          categoryClass: 'cat-community',
-          publishedAt: '2026-02-01',
-          readTime: '7 min',
-          pullQuote: 'Behind the convenience, there are stories of dignity.',
-          content: 'hardcoded',
-        },
-      },
-    },
-  ];
+  return posts.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
+
+// Estimate read time from body blocks
+const wordCount = post.body
+  ? post.body
+      .filter((b: any) => b._type === 'block')
+      .map((b: any) => b.children?.map((c: any) => c.text).join('') || '')
+      .join(' ')
+      .split(/\s+/).length
+  : 0;
+const readTime = `${Math.max(1, Math.ceil(wordCount / 200))} min`;
+
+// Render portable text to HTML
+const bodyHtml = post.body
+  ? toHTML(post.body, {
+      components: {
+        types: {
+          image: ({ value }: any) => {
+            const imgUrl = urlFor(value).width(800).auto('format').url();
+            const alt = value.alt || '';
+            const caption = value.caption || '';
+            return `<figure>
+              <img src="${imgUrl}" alt="${alt}" loading="lazy" />
+              ${caption ? `<figcaption class="text-center text-[13px] text-text-soft mt-2 italic">${caption}</figcaption>` : ''}
+            </figure>`;
+          },
+        },
+        marks: {
+          strong: ({ children }: any) => `<strong>${children}</strong>`,
+          em: ({ children }: any) => `<em>${children}</em>`,
+          link: ({ value, children }: any) =>
+            `<a href="${value?.href || '#'}" target="${value?.href?.startsWith('http') ? '_blank' : '_self'}" rel="noopener noreferrer">${children}</a>`,
+        },
+        block: {
+          h2: ({ children }: any) => `<h2>${children}</h2>`,
+          h3: ({ children }: any) => `<h3>${children}</h3>`,
+          blockquote: ({ children }: any) => `<blockquote>${children}</blockquote>`,
+          normal: ({ children }: any) => `<p>${children}</p>`,
+        },
+      },
+    })
+  : '';
 ---
 
 <BlogLayout
@@ -78,48 +75,10 @@ const { post } = Astro.props;
   category={post.category}
   categoryClass={post.categoryClass || 'cat-ethical'}
   publishedAt={post.publishedAt}
-  readTime={post.readTime || '5 min'}
+  readTime={readTime}
   pullQuote={post.pullQuote}
 >
-  {post.content === 'hardcoded' ? (
-    <Fragment>
-      <p>
-        This is where the full article content will appear once published through Sanity CMS.
-        Each insight is carefully crafted to reflect the values and philosophy of Tama PR —
-        honest, intentional, and always rooted in purpose.
-      </p>
-
-      <h2>Why This Matters</h2>
-      <p>
-        Communication is not just about what you say — it's about what you choose to honour
-        in the telling. Every story carries weight. Every narrative choice has consequences.
-        At Tama PR, we believe in approaching each story with the care it deserves.
-      </p>
-
-      <blockquote>
-        Authenticity isn't a strategy. It's the only sustainable foundation for meaningful communication.
-      </blockquote>
-
-      <h2>Looking Forward</h2>
-      <p>
-        This space will grow as we share more insights, reflections, and perspectives on
-        ethical communication, advocacy, and the intersection of storytelling and justice.
-        Subscribe to our newsletter to stay connected.
-      </p>
-
-      <hr />
-
-      <p>
-        <em>Want to continue the conversation? <a href="/contact">Reach out</a> — we'd love to hear from you.</em>
-      </p>
-    </Fragment>
-  ) : (
-    <Fragment>
-      <!-- Sanity portable text would be rendered here -->
-      <p>{post.excerpt}</p>
-      <p>Full content managed through Sanity CMS.</p>
-    </Fragment>
-  )}
+  <Fragment set:html={bodyHtml} />
 
   <!-- Article Footer CTA -->
   <div class="mt-16 p-8 bg-cream rounded-xl text-center">
