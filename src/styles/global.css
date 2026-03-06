@@ -25,13 +25,8 @@
 /* ============================================
    Base Styles
    ============================================ */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Tailwind 4's preflight already handles box-sizing and resets.
+   Removed margin/padding reset that was conflicting with Tailwind utilities. */
 
 html {
   scroll-behavior: smooth;
