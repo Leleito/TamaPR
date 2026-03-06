@@ -8,7 +8,7 @@ const projects = [
     title: 'Diani Sea Hotels',
     role: 'Guest Experience & Relations Consultant',
     description: 'A partnership to translate the intrinsic warmth of Diani Sea Lodge and Diani Sea Resort into a consistent, brand-defining narrative. Moving beyond standard hospitality training to develop communication frameworks that empowered staff as genuine storytellers.',
-    pillars: ['Lifestyle & Culture', 'PR Education', 'Corporate Communication'],
+    pillars: ['Lifestyle, Culture & Human Connection', 'Communication & PR Education', 'Corporate & Professional Communication'],
     href: '/projects/diani-sea-hotels',
     gradient: 'bg-gradient-to-br from-[#1B4A3A] to-[#2A6B5A]',
   },
@@ -16,7 +16,7 @@ const projects = [
     title: 'Afri Educare Alliance',
     role: 'Co-Founder, Board Member & Communications Lead',
     description: 'A foundational partnership where ethical storytelling was embedded into the organization\'s DNA from the start — championing access to education and supporting communities to reclaim their dignity.',
-    pillars: ['Advocacy', 'Ethical Storytelling', 'Personal Branding'],
+    pillars: ['Advocacy & Ethical Storytelling', 'Personal Branding & Voice'],
     href: '/projects/afri-educare-alliance',
     gradient: 'bg-gradient-to-br from-[#4A2A1B] to-[#6B3A2A]',
   },
@@ -26,7 +26,7 @@ const projects = [
 <BaseLayout title="Projects" description="Collaboration in action. Explore our case studies and client partnerships.">
 
   <section class="pt-32 pb-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Projects</p>
       <h1 class="font-serif text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[700px] reveal">
         Collaboration in action.
@@ -38,7 +38,7 @@ const projects = [
   </section>
 
   <section class="py-20 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-16">
+    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
           <CaseStudyCard
@@ -64,7 +64,7 @@ const projects = [
   </section>
 
   <section class="py-20 bg-cream text-center">
-    <div class="max-w-[600px] mx-auto px-16 reveal">
+    <div class="max-w-[600px] mx-auto px-6 md:px-16 reveal">
       <h2 class="font-serif text-[32px] text-navy mb-4">Ready to tell your story?</h2>
       <p class="text-[16px] text-text-muted mb-8">If you see something here that resonates — or have a story you think needs telling — let's begin.</p>
       <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
@@ -72,12 +72,3 @@ const projects = [
   </section>
 
 </BaseLayout>
-
-<style>
-  @media (max-width: 768px) {
-    section > div {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-</style>

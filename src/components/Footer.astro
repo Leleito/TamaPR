@@ -11,17 +11,17 @@ const navLinks = [
 ];
 
 const pillars = [
-  'Ethical Communication',
-  'Lifestyle & Culture',
-  'Hospitality',
-  'Community Spaces',
-  'Corporate Integrity',
+  'Personal Branding & Voice',
+  'Communication & PR Education',
+  'Advocacy & Ethical Storytelling',
+  'Corporate & Professional Communication',
+  'Lifestyle, Culture & Human Connection',
 ];
 ---
 
 <footer class="bg-[#0C1220] text-white/45">
-  <div class="max-w-[1200px] mx-auto px-16 pt-20 pb-12">
-    <div class="grid grid-cols-[2.2fr_1fr_1fr_1fr] gap-12 pb-16 border-b border-white/[0.04]">
+  <div class="max-w-[1200px] mx-auto px-6 md:px-16 pt-20 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1fr] gap-10 lg:gap-12 pb-16 border-b border-white/[0.04]">
       <!-- Brand Column -->
       <div>
         <div class="flex items-center gap-2.5 mb-6">
@@ -89,23 +89,3 @@ const pillars = [
     </div>
   </div>
 </footer>
-
-<style>
-  @media (max-width: 1024px) {
-    footer .grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    footer .grid {
-      grid-template-columns: 1fr;
-    }
-
-    footer > div {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-</style>
