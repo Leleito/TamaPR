@@ -16,6 +16,9 @@ export const POST: APIRoute = async ({ request }) => {
     const resendKey = import.meta.env.RESEND_API_KEY;
 
     if (resendKey) {
+      // Use verified domain if available, otherwise Resend's default sender
+      const fromDomain = import.meta.env.RESEND_FROM_EMAIL || 'TamaPR Website <onboarding@resend.dev>';
+
       const res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -23,8 +26,8 @@ export const POST: APIRoute = async ({ request }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'TamaPR Website <noreply@tamapr.com>',
-          to: 'hello@tamapr.com',
+          from: fromDomain,
+          to: 'gleleito@gmail.com',
           subject: `New Contact: ${name}${organization ? ` (${organization})` : ''}`,
           html: `
             <h2>New Contact Form Submission</h2>
@@ -39,15 +42,19 @@ export const POST: APIRoute = async ({ request }) => {
       });
 
       if (!res.ok) {
-        const error = await res.text();
-        console.error('Resend error:', error);
-        return new Response(JSON.stringify({ error: 'Failed to send email' }), {
+        const errorText = await res.text();
+        console.error('Resend error:', res.status, errorText);
+        return new Response(JSON.stringify({ error: 'Failed to send email', details: errorText }), {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
         });
       }
     } else {
-      console.log('Contact form submission (no RESEND_API_KEY):', { name, email, organization, message });
+      console.error('RESEND_API_KEY not configured');
+      return new Response(JSON.stringify({ error: 'Email service not configured' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     return new Response(JSON.stringify({ success: true }), {
