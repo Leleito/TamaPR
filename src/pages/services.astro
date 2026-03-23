@@ -51,12 +51,6 @@ const audiences = [
   },
 ];
 
-const pricing = [
-  { type: 'Storytelling Audit', desc: '1-hour deep dive + 3-page report', price: 'KES 30,000' },
-  { type: 'Team Workshop', desc: 'Half-day, on-site or virtual', price: 'KES 45,000' },
-  { type: 'Project-Based Retainer', desc: 'Ongoing strategic counsel', price: 'KES 80,000/mo' },
-  { type: 'Custom Engagements', desc: 'Tailored to scope', price: 'Let\'s talk' },
-];
 ---
 
 <BaseLayout title="Services" description="Strategic communications for purpose-driven individuals, leaders, and organizations.">
@@ -99,20 +93,105 @@ const pricing = [
         <h2 class="font-serif text-[32px] text-navy">Every engagement is custom-built.</h2>
         <p class="text-[15px] text-text-muted mt-3">Here's a sense of where conversations start:</p>
       </div>
-      <div class="space-y-4 reveal">
-        {pricing.map((item) => (
-          <div class="flex justify-between items-center p-5 bg-warm-white rounded-lg border border-navy/[0.06]">
+
+      <div class="space-y-6">
+        <!-- 1. Situational Analysis -->
+        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-7 reveal">
+          <div class="flex justify-between items-start mb-3">
             <div>
-              <h4 class="font-serif text-[16px] text-navy">{item.type}</h4>
-              <p class="text-[13px] text-text-soft">{item.desc}</p>
+              <span class="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta/60">01</span>
+              <h3 class="font-serif text-[20px] text-navy mt-1">Situational Analysis & Communication Audit</h3>
             </div>
-            <span class="font-serif text-[16px] text-terracotta whitespace-nowrap ml-4">{item.price}</span>
+            <span class="font-serif text-[16px] text-terracotta whitespace-nowrap ml-4 mt-2">From KES 80,000</span>
           </div>
-        ))}
+          <p class="text-[14px] text-text-muted mb-1 font-medium">A 2&ndash;4 week immersive assessment</p>
+          <p class="text-[14px] leading-relaxed text-text-muted mb-4">
+            A deep, structured evaluation of how your brand is currently experienced, across communication, service, and perception. It goes beyond messaging to examine alignment between what is said, what is delivered, and what is felt.
+          </p>
+          <div class="mb-4">
+            <p class="text-[13px] font-medium text-navy mb-2">Includes:</p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-1.5 text-[13px] text-text-muted">
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Internal communication review</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Guest experience observation</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Stakeholder engagement</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Brand and messaging alignment</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Digital presence assessment</li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <p class="text-[13px] font-medium text-navy mb-2">Frameworks applied:</p>
+            <ul class="flex flex-wrap gap-2 text-[12px]">
+              <li class="px-3 py-1 rounded-full bg-cream text-text-muted">SWOT Analysis</li>
+              <li class="px-3 py-1 rounded-full bg-cream text-text-muted">Service experience mapping</li>
+              <li class="px-3 py-1 rounded-full bg-cream text-text-muted">Communication flow assessment</li>
+            </ul>
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-1 text-[12px] text-text-soft border-t border-navy/[0.06] pt-3">
+            <span><strong class="text-navy">Where:</strong> On-site at your property</span>
+            <span><strong class="text-navy">Timeline:</strong> 2&ndash;4 weeks</span>
+          </div>
+          <p class="text-[11px] text-text-soft mt-2 italic">
+            Exact scope defined after discovery; travel/accommodation covered by client if outside Nairobi.
+          </p>
+        </div>
+
+        <!-- 2. Strategic Recommendations -->
+        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-7 reveal reveal-delay-2">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta/60">02</span>
+              <h3 class="font-serif text-[20px] text-navy mt-1">Strategic Recommendations</h3>
+            </div>
+            <span class="font-serif text-[16px] text-terracotta whitespace-nowrap ml-4 mt-2">Priced on scope</span>
+          </div>
+          <p class="text-[14px] text-text-muted mb-1 font-medium">A structured report and advisory session</p>
+          <p class="text-[14px] leading-relaxed text-text-muted mb-4">
+            Following the analysis, you receive clear, actionable direction based on insights gathered.
+          </p>
+          <div>
+            <p class="text-[13px] font-medium text-navy mb-2">This includes:</p>
+            <ul class="space-y-1.5 text-[13px] text-text-muted">
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Key findings and patterns</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Communication gaps and risks</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Service culture observations</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Strategic recommendations</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Advisory & Implementation -->
+        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-7 reveal reveal-delay-3">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-[11px] font-semibold tracking-[1.5px] uppercase text-terracotta/60">03</span>
+              <h3 class="font-serif text-[20px] text-navy mt-1">Advisory & Implementation Support</h3>
+            </div>
+            <span class="font-serif text-[16px] text-terracotta whitespace-nowrap ml-4 mt-2">From KES 120,000/mo</span>
+          </div>
+          <p class="text-[14px] text-text-muted mb-1 font-medium">Ongoing or on-site support</p>
+          <p class="text-[14px] leading-relaxed text-text-muted mb-4">
+            For brands that require continued guidance, Tama PR offers hands-on advisory to support alignment and execution.
+          </p>
+          <div>
+            <p class="text-[13px] font-medium text-navy mb-2">This may include:</p>
+            <ul class="space-y-1.5 text-[13px] text-text-muted">
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> On-site presence (for training, alignment, or crisis support)</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Team workshops (guest experience, ethical storytelling, interdepartmental communication)</li>
+              <li class="flex gap-2"><span class="text-terracotta">&#9679;</span> Communication guidance (internal protocols, brand voice, crisis preparedness)</li>
+            </ul>
+          </div>
+          <p class="text-[11px] text-text-soft mt-4 italic">
+            On-site engagements: transport, accommodation, and meals covered by the client.
+          </p>
+        </div>
       </div>
-      <p class="text-[13px] text-text-soft text-center mt-6">
-        Exact pricing provided after our discovery conversation, based on your needs.
-      </p>
+
+      <!-- Note -->
+      <div class="mt-8 text-center reveal">
+        <p class="text-[13px] text-text-soft">
+          Final scope and investment are defined after an initial discovery conversation.
+        </p>
+      </div>
     </div>
   </section>
 
