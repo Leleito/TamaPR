@@ -19,11 +19,11 @@ const philosophy = [
 ];
 
 const pillars = [
-  { number: '01', title: 'Personal Branding & Voice', tagline: 'The foundation where all communication begins.', subtitle: 'Because a voice that knows itself is never forgotten.' },
-  { number: '02', title: 'Communication & PR Education', tagline: 'Empowering through knowledge.', subtitle: 'Because understanding how communication works is the first step to using it well.' },
-  { number: '03', title: 'Advocacy & Ethical Storytelling', tagline: 'The purpose that fuels our work.', subtitle: 'Because some stories need more than amplification\u2014they need care.' },
-  { number: '04', title: 'Corporate & Professional Communication', tagline: 'Building trust at an organizational level.', subtitle: 'Because what happens inside shapes what the world hears.' },
-  { number: '05', title: 'Lifestyle, Culture & Human Connection', tagline: 'The human layer of storytelling.', subtitle: 'Because all communication starts with understanding people.' },
+  { number: '01', id: 'pillar-1', title: 'Personal Branding & Voice', tagline: 'The foundation where all communication begins.', subtitle: 'Because a voice that knows itself is never forgotten.', what: 'Before messaging. Before content. Before any campaign, there is voice. This pillar is dedicated to helping individuals and organizations discover, refine, and own their authentic voice. It\'s the practice of translating core identity into clear, impactful messaging that feels unmistakably yours.', why: 'Authentic brands are built by authentic voices. When a voice is rooted in identity, every message becomes unmistakable and memorable. Without this foundation, communication feels performative, inconsistent, and easily forgotten.', who: 'Founders, executives, leaders, and organizations who know their voice matters but need help clarifying it.' },
+  { number: '02', id: 'pillar-2', title: 'Communication & PR Education', tagline: 'Empowering through knowledge.', subtitle: 'Because understanding how communication works is the first step to using it well.', what: 'Good communication is a skill. Powerful communication is a practice. This pillar is dedicated to demystifying PR, writing, and storytelling, offering clear, practical guidance through workshops, training, and frameworks that build lasting capability.', why: 'When people and brands understand how communication works, they express themselves more effectively, build stronger relationships, and achieve meaningful impact. Knowledge turns instinct into intention.', who: 'Teams, organizations, and leaders who want to build communication skills internally.' },
+  { number: '03', id: 'pillar-3', title: 'Advocacy & Ethical Storytelling', tagline: 'The purpose that fuels our work.', subtitle: 'Because some stories need more than amplification. They need care.', what: 'This is the heart of Tama PR. We amplify underrepresented voices and sensitive narratives with dignity, ensuring stories of communities, survivors, and social justice are told with care, context, and consent.', why: 'For mission-driven organizations, ethical storytelling is not optional. It is a critical component of credibility and long-term trust. It transforms communication from extraction into partnership.', who: 'Non-profits, social enterprises, advocacy organizations, and mission-driven brands handling sensitive narratives.' },
+  { number: '04', id: 'pillar-4', title: 'Corporate & Professional Communication', tagline: 'Building trust at an organizational level.', subtitle: 'Because what happens inside shapes what the world hears.', what: 'Trust isn\'t built by press releases. It\'s built by how people within an organization talk to each other, and whether the external message matches the internal reality. This pillar focuses on the systems, structures, and practices that enable clear, consistent communication within an organization.', why: 'Organizations don\'t just communicate to be seen. They communicate to be understood, trusted, and believed. But that trust starts inside. If your team doesn\'t believe your message, no external campaign will fix it.', who: 'Organizations, hospitality brands, and businesses ready to align their internal communication with their external voice.' },
+  { number: '05', id: 'pillar-5', title: 'Lifestyle, Culture & Human Connection', tagline: 'The human layer of storytelling.', subtitle: 'Because all communication starts with understanding people.', what: 'A celebration of human experiences, communities, and cultural layers that shape how people connect, heal, and belong. This is where culture meets communication, and where lifestyle isn\'t just aesthetic, it\'s identity.', why: 'Good PR begins with listening to people, understanding their world, and shaping communication that resonates authentically. When brands connect with culture and community, they stop feeling like brands and start feeling like belonging.', who: 'Hospitality brands, lifestyle businesses, and cultural organizations who want their story to feel as human as the people they serve.' },
 ];
 ---
 
@@ -130,7 +130,7 @@ const pillars = [
           />
           <div class="mt-5 text-center lg:text-left">
             <h3 class="font-serif text-[24px] text-navy">Tama Munira Wazome</h3>
-            <p class="text-[14px] text-terracotta font-medium mt-1">Founder & Communications Lead</p>
+            <p class="text-[14px] text-terracotta font-medium mt-1">Founder & CEO</p>
           </div>
         </div>
 
@@ -192,14 +192,31 @@ const pillars = [
       </div>
       <div class="space-y-4">
         {pillars.map((p, i) => (
-          <div class={`flex items-start gap-6 p-6 bg-white/[0.03] border border-white/[0.06] rounded-lg reveal reveal-delay-${i + 1}`}>
-            <span class="text-[13px] font-semibold text-amber/50 mt-0.5">{p.number}</span>
-            <div>
-              <h3 class="font-serif text-[18px] text-white mb-1">{p.title}</h3>
-              <p class="text-[14px] text-white/50 mb-0.5">{p.tagline}</p>
-              <p class="text-[13px] text-white/30 italic">{p.subtitle}</p>
+          <details id={p.id} class={`group bg-white/[0.03] border border-white/[0.06] rounded-lg reveal reveal-delay-${i + 1}`}>
+            <summary class="flex items-start gap-6 p-6 cursor-pointer list-none">
+              <span class="text-[13px] font-semibold text-amber/50 mt-0.5">{p.number}</span>
+              <div class="flex-1">
+                <h3 class="font-serif text-[18px] text-white mb-1">{p.title}</h3>
+                <p class="text-[14px] text-white/50 mb-0.5">{p.tagline}</p>
+                <p class="text-[13px] text-white/30 italic">{p.subtitle}</p>
+              </div>
+              <span class="text-amber/40 text-[18px] transition-transform duration-300 group-open:rotate-45 mt-1">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-[3.75rem] space-y-4">
+              <div>
+                <h4 class="text-[12px] font-semibold tracking-[1.5px] uppercase text-amber/40 mb-2">What This Pillar Represents</h4>
+                <p class="text-[14px] leading-relaxed text-white/40">{p.what}</p>
+              </div>
+              <div>
+                <h4 class="text-[12px] font-semibold tracking-[1.5px] uppercase text-amber/40 mb-2">Why It Matters</h4>
+                <p class="text-[14px] leading-relaxed text-white/40">{p.why}</p>
+              </div>
+              <div>
+                <h4 class="text-[12px] font-semibold tracking-[1.5px] uppercase text-amber/40 mb-2">Who This Is For</h4>
+                <p class="text-[14px] leading-relaxed text-white/40">{p.who}</p>
+              </div>
             </div>
-          </div>
+          </details>
         ))}
       </div>
     </div>

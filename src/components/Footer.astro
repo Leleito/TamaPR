@@ -11,11 +11,11 @@ const navLinks = [
 ];
 
 const pillars = [
-  'Personal Branding & Voice',
-  'Communication & PR Education',
-  'Advocacy & Ethical Storytelling',
-  'Corporate & Professional Communication',
-  'Lifestyle, Culture & Human Connection',
+  { title: 'Personal Branding & Voice', href: '/about#pillar-1' },
+  { title: 'Communication & PR Education', href: '/about#pillar-2' },
+  { title: 'Advocacy & Ethical Storytelling', href: '/about#pillar-3' },
+  { title: 'Corporate & Professional Communication', href: '/about#pillar-4' },
+  { title: 'Lifestyle, Culture & Human Connection', href: '/about#pillar-5' },
 ];
 ---
 
@@ -53,7 +53,7 @@ const pillars = [
         <ul class="list-none space-y-3">
           {pillars.map((pillar) => (
             <li>
-              <span class="text-[13.5px] text-white/45">{pillar}</span>
+              <a href={pillar.href} class="text-[13.5px] text-white/45 no-underline hover:text-amber transition-colors duration-300">{pillar.title}</a>
             </li>
           ))}
         </ul>
