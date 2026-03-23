@@ -46,13 +46,13 @@ const pillars = [
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-5">Who We Are</p>
         <div class="space-y-5 text-[16px] leading-[1.85] text-text-muted">
           <p>
-            Tama PR is built on connection&mdash;not just messaging. We believe communication carries responsibility, not just reach.
+            Tama PR is built on connection, not just messaging. We believe communication carries responsibility, not just reach.
           </p>
           <p>
-            We operate at the intersection of clarity, empathy, and advocacy&mdash;prioritizing understanding before visibility, and intention before performance. Every engagement begins by listening: to the people behind the brand, the values they carry, and the real-world impact their voice creates.
+            We operate at the intersection of clarity, empathy, and advocacy, prioritizing understanding before visibility, and intention before performance. Every engagement begins by listening: to the people behind the brand, the values they carry, and the real-world impact their voice creates.
           </p>
           <p>
-            This is not transactional PR. It is thoughtful, ethical communication designed to build trust, protect narratives, and strengthen relationships&mdash;especially where communities, livelihoods, or sensitive stories are involved.
+            This is not transactional PR. It is thoughtful, ethical communication designed to build trust, protect narratives, and strengthen relationships, especially where communities, livelihoods, or sensitive stories are involved.
           </p>
         </div>
       </div>
@@ -76,13 +76,13 @@ const pillars = [
         <h2 class="font-serif text-[28px] md:text-[32px] text-navy mb-6">The story behind Tama PR.</h2>
         <div class="space-y-5 text-[16px] leading-[1.85] text-text-muted">
           <p>
-            I've always been drawn to how people speak &mdash; and what they leave unsaid.
+            I've always been drawn to how people speak, and what they leave unsaid.
           </p>
           <p>
-            Long before PR became a profession for me, storytelling was how I made sense of the world. I listened closely. I noticed tone, pauses, intention. I paid attention to how words could soften a moment, or harden it. How they could create closeness &mdash; or distance.
+            Long before PR became a profession for me, storytelling was how I made sense of the world. I listened closely. I noticed tone, pauses, intention. I paid attention to how words could soften a moment, or harden it. How they could create closeness or distance.
           </p>
           <p>
-            As I moved through different spaces and industries, I began to see just how much power communication holds. I saw how stories could open doors, build trust, and give people a sense of belonging. But I also saw the other side &mdash; how easily stories could be rushed, simplified, or handled without care.
+            As I moved through different spaces and industries, I began to see just how much power communication holds. I saw how stories could open doors, build trust, and give people a sense of belonging. But I also saw the other side: how easily stories could be rushed, simplified, or handled without care.
           </p>
           <p>
             Over time, what disturbed me wasn't the lack of storytelling, but the lack of responsibility around it. Visibility was often prioritized over dignity. Performance over truth. People were reduced to talking points, communities to campaigns, and lived experiences to content.
@@ -91,7 +91,7 @@ const pillars = [
             That tension stayed with me.
           </p>
           <p>
-            Especially in spaces involving livelihoods, in vulnerability, or identity, I felt a quiet discomfort with how easily narratives could be shaped without consent, context, or care. I began asking myself harder questions &mdash; not just what story is being told, but who is telling it, who benefits, and who carries the consequences.
+            Especially in spaces involving livelihoods, in vulnerability, or identity, I felt a quiet discomfort with how easily narratives could be shaped without consent, context, or care. I began asking myself harder questions: not just what story is being told, but who is telling it, who benefits, and who carries the consequences.
           </p>
           <p>
             At some point, I realized I didn't want to just participate in communication as it was. I wanted to work differently. Slower. More intentionally. With curiosity instead of extraction. With listening before speaking.
@@ -100,7 +100,7 @@ const pillars = [
             Tama PR grew from that decision.
           </p>
           <p>
-            It exists because I believe voice carries responsibility. That behind every brand, every organization, every campaign, there are real people &mdash; with histories, values, and dignity &mdash; who deserve to be represented truthfully and thoughtfully.
+            It exists because I believe voice carries responsibility. That behind every brand, every organization, every campaign, there are real people, with histories, values, and dignity, who deserve to be represented truthfully and thoughtfully.
           </p>
           <p>
             This work is personal to me. It's shaped by observation, by listening, and by choosing to honor nuance in a world that often rewards noise. I believe stories should not only be effective, but ethical. Not only compelling, but considerate.
@@ -187,7 +187,7 @@ const pillars = [
       <div class="text-center mb-14 reveal">
         <p class="text-[11px] font-semibold tracking-[2px] uppercase text-amber/50 mb-5">Our Lenses</p>
         <h2 class="font-serif text-[24px] md:text-[32px] text-white max-w-[600px] mx-auto">
-          Tama PR stands on five pillars &mdash; the lenses through which we communicate, create, educate, and advocate.
+          Tama PR stands on five pillars: the lenses through which we communicate, create, educate, and advocate.
         </h2>
       </div>
       <div class="space-y-4">
@@ -232,3 +232,21 @@ const pillars = [
   </section>
 
 </BaseLayout>
+
+<script>
+  // Auto-open pillar details when navigating via hash (e.g. from footer links)
+  function openPillarFromHash() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#pillar-')) {
+      const details = document.querySelector(hash)?.closest('details') || document.querySelector(hash);
+      if (details && details.tagName === 'DETAILS') {
+        details.open = true;
+        setTimeout(() => {
+          details.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    }
+  }
+  openPillarFromHash();
+  window.addEventListener('hashchange', openPillarFromHash);
+</script>
