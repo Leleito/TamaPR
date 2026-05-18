@@ -1,5 +1,7 @@
 ---
 import CaseStudyCard from './CaseStudyCard.astro';
+import dianiHero from '../assets/images/diani-hero.jpg';
+import afriCommunity from '../assets/images/afri-educare-community.jpg';
 
 const caseStudies = [
   {
@@ -9,6 +11,7 @@ const caseStudies = [
     pillars: ['Lifestyle, Culture & Human Connection', 'Communication & PR Education', 'Corporate & Professional Communication'],
     href: '/projects/diani-sea-hotels',
     gradient: 'bg-gradient-to-br from-[#1B4A3A] to-[#2A6B5A]',
+    image: dianiHero,
   },
   {
     title: 'Afri Educare Alliance',
@@ -17,6 +20,7 @@ const caseStudies = [
     pillars: ['Advocacy & Ethical Storytelling', 'Personal Branding & Voice'],
     href: '/projects/afri-educare-alliance',
     gradient: 'bg-gradient-to-br from-[#4A2A1B] to-[#6B3A2A]',
+    image: afriCommunity,
   },
 ];
 ---
@@ -44,6 +48,7 @@ const caseStudies = [
           pillars={study.pillars}
           href={study.href}
           gradient={study.gradient}
+          image={study.image}
           delay={i + 1}
         />
       ))}
