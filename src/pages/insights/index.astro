@@ -1,134 +1,203 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import InsightCard from '../../components/InsightCard.astro';
 import MagneticButton from '../../components/MagneticButton.astro';
 import { client } from '../../lib/sanity';
 
-// Fetch featured post
 const featuredPosts = await client.fetch(
-  `*[_type == "post" && featured == true] | order(publishedAt desc)[0...1] {
-    title,
-    "slug": slug.current,
-    excerpt,
-    "category": pillar->title,
-    "categoryClass": pillar->categoryClass
-  }`
-);
-const featured = featuredPosts[0] || null;
-
-// Fetch latest posts (exclude featured)
-const latestPosts = await client.fetch(
-  `*[_type == "post" && featured != true] | order(publishedAt desc)[0...4] {
-    title,
-    "slug": slug.current,
-    excerpt,
-    "category": pillar->title,
-    "categoryClass": pillar->categoryClass
+  `*[_type == "post" && featured == true] | order(publishedAt desc) {
+    title, "slug": slug.current, excerpt,
+    "category": pillar->title, "categoryClass": pillar->categoryClass,
+    "pillarNumber": pillar->number
   }`
 );
 
-// Fetch pillars for filter buttons
-const pillars = await client.fetch(
+const pillarsWithPosts = await client.fetch(
   `*[_type == "pillar"] | order(number asc) {
-    title,
-    categoryClass
+    _id, title, number, categoryClass, tagline,
+    whatItRepresents,
+    "posts": *[_type == "post" && pillar._ref == ^._id && featured != true] | order(publishedAt desc) {
+      title, "slug": slug.current, excerpt
+    }
   }`
 );
+
+const pillarAccents: Record<number, string> = {
+  1: '#1B2A4A', 2: '#3B6E8F', 3: '#B85C3C', 4: '#7B6BA8', 5: '#C0565A'
+};
 ---
 
-<BaseLayout title="Insights" description="Stories, reflections, and perspectives grounded in authenticity, advocacy, and purpose.">
+<BaseLayout title="Insights" description="Honest observations and thoughts on PR, storytelling, and advocacy.">
 
-  <section class="pt-32 pb-16 bg-warm-white">
-    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
-      <p class="text-[11px] font-semibold tracking-[2.5px] uppercase text-terracotta mb-5 reveal">Insights</p>
-      <h1 class="font-serif text-[36px] md:text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[600px] reveal">
-        Where thought meets heart.
+  <!-- Hero -->
+  <section class="pt-32 pb-20 bg-warm-white">
+    <div class="max-w-[1100px] mx-auto px-6 md:px-16">
+      <p class="text-[10px] font-semibold tracking-[2.5px] uppercase text-amber mb-5 reveal">Insights</p>
+      <h1 class="font-serif text-[36px] md:text-[42px] lg:text-[56px] text-navy leading-[1.1] max-w-[720px] mb-8 reveal">
+        Communication, culture, ethics, and the rooms <em class="text-terracotta">underneath them.</em>
       </h1>
-      <p class="text-[16px] text-text-muted mt-4 max-w-[560px] reveal">
-        Stories, reflections, and perspectives grounded in authenticity, advocacy, and purpose.
-      </p>
-    </div>
-  </section>
-
-  <!-- Featured + Latest -->
-  {(featured || latestPosts.length > 0) && (
-    <section class="py-16 bg-warm-white">
-      <div class="max-w-[1200px] mx-auto px-6 md:px-16">
-        <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8">
-          {featured && (
-            <div class="reveal">
-              <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Featured</h3>
-              <InsightCard
-                title={featured.title}
-                excerpt={featured.excerpt}
-                category={featured.category || 'Insight'}
-                categoryClass={featured.categoryClass || 'cat-ethical'}
-                href={`/insights/${featured.slug}`}
-                featured
-              />
-            </div>
-          )}
-          {latestPosts.length > 0 && (
-            <div class="reveal reveal-delay-2">
-              <h3 class="text-[11px] font-semibold tracking-[1.5px] uppercase text-text-soft mb-4">Latest</h3>
-              {latestPosts.map((post: any) => (
-                <InsightCard
-                  title={post.title}
-                  excerpt={post.excerpt}
-                  category={post.category || 'Insight'}
-                  categoryClass={post.categoryClass || 'cat-ethical'}
-                  href={`/insights/${post.slug}`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- The Unsaid Series -->
-  <section class="py-16 bg-cream">
-    <div class="max-w-[1200px] mx-auto px-6 md:px-16">
-      <div class="reveal">
-        <p class="text-[11px] font-semibold tracking-[2px] uppercase text-terracotta mb-4">Video Series</p>
-        <h2 class="font-serif text-[30px] text-navy mb-3">The Unsaid</h2>
-        <p class="text-[15px] text-text-muted max-w-[560px] mb-8">
-          A conversation series where we sit with survivors, advocates, and experts to explore the stories that rarely get told, with the care they deserve.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start reveal">
+        <p class="text-[14px] text-text-muted leading-[1.8] border-l-2 border-terracotta pl-5">
+          These essays, reflections, and narrative studies explore the human side of communication: how people speak, what organisations perform, what stories conceal, and what trust actually requires.
         </p>
-        <div class="bg-warm-white border border-navy/[0.06] rounded-xl p-8 md:p-12 text-center">
-          <p class="font-serif text-[18px] text-navy/30 mb-2">Latest Episode</p>
-          <p class="text-[15px] text-text-soft">Coming Soon</p>
-          <p class="text-[13px] text-text-soft mt-2 italic">Stories of pain, courage, and survival, told with dignity, not extraction.</p>
+        <div class="text-[13px] text-text-soft leading-[1.75] space-y-3">
+          <p>Some pieces are strategic. Some are observational. Some sit inside advocacy and ethical storytelling.</p>
+          <p class="italic text-text-soft/70">None are written for volume. All are written to leave something behind.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Explore by Pillar -->
-  {pillars.length > 0 && (
-    <section class="py-16 bg-warm-white">
-      <div class="max-w-[1200px] mx-auto px-6 md:px-16">
-        <div class="text-center mb-8 reveal">
-          <h2 class="font-serif text-[24px] text-navy mb-2">Explore by Pillar</h2>
-          <p class="text-[14px] text-text-muted">Click any pillar to explore related insights.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-3 reveal">
-          {pillars.map((p: any) => (
-            <button class={`text-[12px] font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 ${p.categoryClass || 'cat-ethical'}`}>
-              {p.title}
-            </button>
+  <!-- Featured Essays (dark section) -->
+  {featuredPosts.length > 0 && (
+    <section class="bg-[#1C1914] py-16 md:py-20">
+      <div class="max-w-[1100px] mx-auto px-6 md:px-16">
+        <p class="text-[10px] font-semibold tracking-[1.8px] uppercase text-amber mb-10 flex items-center gap-3 reveal">
+          Featured Essays <span class="flex-1 max-w-[48px] h-px bg-amber/40"></span>
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08]">
+          {featuredPosts.map((post: any, i: number) => (
+            <a
+              href={`/insights/${post.slug}`}
+              class="group bg-[#1C1914] p-8 md:p-9 flex flex-col justify-between min-h-[320px] no-underline relative overflow-hidden transition-colors duration-200 hover:bg-white/[0.03]"
+              style={`border-top: 3px solid ${pillarAccents[post.pillarNumber] || '#B85C3C'}`}
+            >
+              <div>
+                <p class="text-[10px] font-semibold tracking-[1.2px] uppercase text-white/25 mb-3">Featured {String(i + 1).padStart(2, '0')}</p>
+                <p class="text-[11px] font-medium text-amber/60 mb-3 tracking-wide">{post.category}</p>
+                <h3 class="font-serif text-[18px] md:text-[20px] font-medium text-[#F5F0E8]/90 leading-[1.3] mb-4">{post.title}</h3>
+                <p class="text-[12.5px] text-white/40 leading-[1.65] line-clamp-3">{post.excerpt}</p>
+              </div>
+              <p class="text-[11px] font-medium text-terracotta mt-5 tracking-wide group-hover:translate-x-1 transition-transform duration-200">Read Essay &rarr;</p>
+            </a>
           ))}
         </div>
       </div>
     </section>
   )}
 
+  <!-- Per-Pillar Article Sections -->
+  {pillarsWithPosts.map((pillar: any, idx: number) => (
+    <section
+      class={`py-14 md:py-16 ${idx % 2 === 1 ? 'bg-[#F5F0E8]/60' : 'bg-warm-white'}`}
+      style={`border-top: 3px solid ${pillarAccents[pillar.number] || '#B85C3C'}`}
+    >
+      <div class="max-w-[1100px] mx-auto px-6 md:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-10 mb-8 pb-7 border-b border-navy/[0.06] reveal">
+          <div>
+            <p class="text-[10px] font-semibold tracking-[1.2px] uppercase text-text-soft mb-2">Pillar {String(pillar.number).padStart(2, '0')}</p>
+            <h2 class="font-serif text-[22px] text-navy leading-snug">{pillar.title}</h2>
+          </div>
+          <div class="text-[13px] text-text-muted leading-[1.75]">
+            {pillar.tagline && <p class="font-medium text-navy text-[13.5px] mb-2">{pillar.tagline}</p>}
+            {pillar.whatItRepresents && <p>{pillar.whatItRepresents}</p>}
+          </div>
+        </div>
+
+        {pillar.posts.length > 0 ? (
+          <ul class="space-y-0 reveal">
+            {pillar.posts.map((post: any) => (
+              <li>
+                <a href={`/insights/${post.slug}`} class="group flex items-center justify-between py-4 border-b border-navy/[0.04] no-underline transition-colors duration-150">
+                  <span class="font-serif text-[15px] text-navy group-hover:text-terracotta transition-colors duration-150 leading-snug pr-4">{post.title}</span>
+                  <span class="text-[14px] text-navy/15 flex-shrink-0 group-hover:text-terracotta group-hover:translate-x-1 transition-all duration-150">&rarr;</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-[13px] text-text-soft italic reveal">Essays coming soon.</p>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <!-- The Unsaid -->
+  <section class="bg-[#1C1914] py-16 md:py-20">
+    <div class="max-w-[1100px] mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 reveal">
+        <div>
+          <p class="text-[9px] font-semibold tracking-[1.4px] uppercase text-white/40 border border-white/[0.18] inline-block px-3 py-1 mb-5">Editorial Series &middot; Within Pillar 03</p>
+          <h2 class="font-serif text-[42px] md:text-[48px] font-medium text-white/90 leading-[1.1] mb-2">
+            <span class="text-terracotta">The</span> Unsaid
+          </h2>
+          <p class="text-[11px] font-medium tracking-[1px] uppercase text-white/30 mb-7">A narrative space for lived experience</p>
+
+          <div class="flex items-center gap-2.5 mb-8">
+            <span class="w-[7px] h-[7px] rounded-full bg-amber animate-pulse"></span>
+            <span class="text-[11px] font-medium tracking-[0.8px] uppercase text-amber">Launches when it is ready</span>
+          </div>
+
+          <div class="space-y-4 text-[14px] text-white/45 leading-[1.85] mb-8">
+            <p>Some stories do not need amplification. They need a different kind of space entirely, one built not for reach, but for care.</p>
+            <p><strong class="text-white/65">The Unsaid is not awareness content. It is not trauma performance. It is not storytelling shaped toward inspiration, virality, or institutional comfort.</strong></p>
+            <p class="italic text-white/50">It is structured witnessing.</p>
+          </div>
+
+          <a href="/insights/videos" class="inline-flex items-center gap-2.5 text-[12px] font-medium tracking-[0.6px] text-amber border border-amber/30 px-5 py-2.5 no-underline hover:bg-amber/[0.08] transition-colors duration-150">Enter The Unsaid</a>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-semibold tracking-[1.2px] uppercase text-white/30 mb-5">Inside The Unsaid</p>
+          <div class="space-y-0">
+            {[
+              { n: '01', t: 'Witnessed Conversations', d: 'Long-form conversations handled with restraint, consent, and emotional accuracy.' },
+              { n: '02', t: 'Silence Essays', d: 'Observational writing focused on pauses, omissions, atmosphere, and emotional architecture.' },
+              { n: '03', t: 'Ethical Observations', d: 'Narrative studies examining how stories are shaped, edited, translated, and institutionalised.' },
+              { n: '04', t: 'Narrative Studies', d: 'Deep analysis of communication ethics, representation, storytelling systems, and narrative power.' },
+            ].map((item) => (
+              <div class="flex gap-4 py-4 border-b border-white/[0.07] first:border-t">
+                <span class="text-[10px] font-semibold tracking-[0.6px] text-amber/50 pt-0.5 flex-shrink-0">{item.n}</span>
+                <div>
+                  <p class="text-[13px] font-medium text-white/65 mb-1">{item.t}</p>
+                  <p class="text-[12px] text-white/35 leading-[1.65]">{item.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-4 p-4 border border-white/[0.07]">
+            <p class="text-[10px] font-semibold tracking-[1px] uppercase text-white/25 mb-3">What this series will never do</p>
+            <div class="text-[12px] text-white/35 leading-[1.9] space-y-1">
+              <p>&mdash; Use someone's story as evidence of need</p>
+              <p>&mdash; Centre the organisation over the person</p>
+              <p>&mdash; Publish without the person's final approval</p>
+              <p>&mdash; Treat difficult experience as content to be optimised</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why These Essays Exist -->
+  <section class="py-16 md:py-20 bg-navy">
+    <div class="max-w-[1100px] mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 reveal">
+        <div>
+          <h2 class="font-serif text-[28px] md:text-[32px] text-white font-medium leading-[1.25] mb-6">Why These Essays Exist</h2>
+          <p class="text-[14px] text-white/65 leading-[1.8] mb-7">Tama PR does not approach communication as performance alone.</p>
+          <p class="text-[13px] text-white/45 mb-4">Communication shapes:</p>
+          <ul class="space-y-0">
+            {['trust', 'memory', 'representation', 'power', 'belonging', 'and the way people understand themselves inside institutions, cultures, and public narratives'].map((item) => (
+              <li class="text-[13px] text-white/50 py-2.5 border-b border-white/[0.08] flex items-center gap-3">
+                <span class="w-1 h-1 rounded-full bg-amber flex-shrink-0"></span> {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="flex flex-col justify-center">
+          <p class="text-[15px] text-white/70 leading-[1.7] mb-5">These essays exist to observe those systems carefully.</p>
+          <p class="text-[13.5px] text-white/38 leading-[1.7] italic">Not everything here offers answers. Some pieces are simply asking people to notice what was already happening in the room.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Newsletter -->
   <section class="py-16 bg-cream">
     <div class="max-w-[500px] mx-auto px-6 md:px-16 text-center reveal">
       <h2 class="font-serif text-[24px] text-navy mb-3">Stay Connected</h2>
-      <p class="text-[14px] text-text-muted mb-6">No spam. Just honest thoughts on PR, storytelling, and advocacy.</p>
+      <p class="text-[14px] text-text-muted mb-6">Honest observations and thoughts on PR, storytelling, and advocacy.</p>
       <form class="flex flex-col md:flex-row gap-3">
         <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-lg border border-navy/[0.08] bg-warm-white text-[14px] focus:outline-none focus:border-terracotta/40" />
         <button type="submit" class="px-5 py-3 bg-terracotta text-white text-[14px] font-medium rounded-lg hover:bg-terracotta-hover transition-colors">Subscribe</button>
@@ -144,5 +213,13 @@ const pillars = await client.fetch(
       <MagneticButton href="/contact" variant="primary">Schedule a Discovery Call</MagneticButton>
     </div>
   </section>
+
+  <!-- Editorial Footer Note -->
+  <div class="bg-[#1C1914] py-7 px-6 md:px-16">
+    <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-[12px] text-white/40 leading-[1.65] max-w-[520px]">New essays are published intentionally, not algorithmically. Some arrive quickly. Some take months. Some remain unfinished. The pace is part of the practice.</p>
+      <p class="font-serif text-[16px] text-white/60">Tama<span class="text-terracotta"> PR</span></p>
+    </div>
+  </div>
 
 </BaseLayout>
