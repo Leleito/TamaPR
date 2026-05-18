@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import MagneticButton from '../../components/MagneticButton.astro';
+import dianiHero from '../../assets/images/diani-hero.jpg';
+import afriCommunity from '../../assets/images/afri-educare-community.jpg';
 
 const projects = [
   {
@@ -11,6 +13,7 @@ const projects = [
     pillars: ['Lifestyle, Culture & Human Connection', 'Communication & PR Education', 'Corporate & Professional Communication'],
     href: '/projects/diani-sea-hotels',
     gradient: 'bg-gradient-to-br from-[#1B4A3A] to-[#2A6B5A]',
+    image: dianiHero,
   },
   {
     title: 'Afri Educare Alliance',
@@ -19,6 +22,7 @@ const projects = [
     pillars: ['Advocacy & Ethical Storytelling', 'Communication & PR Education', 'Personal Branding & Voice'],
     href: '/projects/afri-educare-alliance',
     gradient: 'bg-gradient-to-br from-[#4A2A1B] to-[#6B3A2A]',
+    image: afriCommunity,
   },
 ];
 ---
@@ -48,6 +52,7 @@ const projects = [
             pillars={project.pillars}
             href={project.href}
             gradient={project.gradient}
+            image={project.image}
             delay={i + 1}
           />
         ))}

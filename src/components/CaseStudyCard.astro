@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   title: string;
   role: string;
@@ -6,15 +8,17 @@ interface Props {
   pillars: string[];
   href: string;
   gradient: string;
+  image?: ImageMetadata;
   delay?: number;
 }
 
-const { title, role, description, pillars, href, gradient, delay = 0 } = Astro.props;
+const { title, role, description, pillars, href, gradient, image, delay = 0 } = Astro.props;
 ---
 
 <a href={href} class={`case-study-card group block rounded-xl overflow-hidden no-underline transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-${delay}`}>
-  <div class={`h-[200px] ${gradient} flex items-end p-6`}>
-    <h3 class="font-serif text-[24px] text-white">{title}</h3>
+  <div class={`h-[200px] ${gradient} relative flex items-end p-6 overflow-hidden`}>
+    {image && <Image src={image} alt={title} class="absolute inset-0 w-full h-full object-cover" />}
+    <h3 class="font-serif text-[24px] text-white relative z-10 drop-shadow-lg">{title}</h3>
   </div>
   <div class="bg-warm-white p-7 border border-t-0 border-navy/[0.06] rounded-b-xl">
     <p class="text-[12px] font-semibold tracking-[1px] uppercase text-terracotta mb-3">{role}</p>
